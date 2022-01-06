@@ -1,0 +1,94 @@
+.prodlist_pagination, .galleryimg_list_pagination {
+	text-align: center;
+}
+.Polaris-ButtonGroup.Polaris-ButtonGroup--segmented {
+    display: inline-block;
+}
+.Polaris-ButtonGroup--segmented .Polaris-ButtonGroup__Item {
+    display: contents;
+}
+.text_overlay_font_color .Polaris-Connected__Item--primary .Polaris-TextField__Input,
+.text_overlay_bg_color .Polaris-Connected__Item--primary .Polaris-TextField__Input {
+    width: 50px;
+}
+.overlay_main_settings .Polaris-OptionList__Options{
+    display: flex;
+}
+.overlay_main_settings .Polaris-OptionList{
+    padding: 0 !important;
+}
+.overlay_list_img .Polaris-Thumbnail {
+    width: 40px;
+    height: 40px;
+}
+.overlay_action_btn .Polaris-ButtonGroup.Polaris-ButtonGroup--loose {
+    float: right;
+}
+.choose_image_type ul.Polaris-ChoiceList__Choices {
+    display: flex;
+}
+.choose_image_type ul.Polaris-ChoiceList__Choices li{
+    margin-right: 20px;
+}
+ .gallery_container span.Polaris-Thumbnail.Polaris-Thumbnail--sizeLarge {
+    cursor: pointer;
+} 
+.gallery_container .select_badge{
+    border: 2px solid #2c6ecb;
+    border-radius: 5.5px;
+}
+.preview_card .Polaris-Card__Section {
+    padding: 0;
+}
+.preview_card .Polaris-Card {
+    background-color: unset;
+}
+.preview_card{
+    overflow: hidden;
+}
+.overlay-text-section {
+    line-height: normal;
+    word-break: break-all;
+}
+.display_font_color,.display_background_color {
+    position: absolute;
+    z-index: 99;
+    right: 0;
+}
+.text_overlay_font_color,.text_overlay_bg_color {
+    position: relative;
+}
+.text_overlay_settings_container,.image_overlay_settings_container{
+    margin-top: 1.6rem;
+}
+.plan_btn {
+    min-height: 35.99px;
+}
+.planInfoSection h2.overlay_product_count_text {
+    min-height: 20px;
+    margin-top: 20px;
+    font-weight: 700;
+}
+.planInfoSection button.Polaris-Button {
+    margin: 0 auto;
+}
+.planInfoSection .Polaris-Stack--vertical > .Polaris-Stack__Item {
+    margin-left: 0;
+    display: flex;
+    flex-direction: inherit;
+}
+.eo_app_logo{
+    width: 200px;
+    height: 200px
+}
+.dahboard_header {
+    width: 100%;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+h2.overlay_product_count_text {
+    font-weight: 600;
+    font-size: 46px;
+    line-height: normal;
+}

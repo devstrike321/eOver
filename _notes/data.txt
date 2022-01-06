@@ -1,0 +1,24 @@
+App name: Easy Overlay
+Logo Attached: 
+
+App Intro / Homepage
+https://preview.uxpin.com/dfc77c92cf9e1c4ed4087b8f4230c301b1c4af1d#/pages/140645304
+
+Overlay Edit Page
+https://preview.uxpin.com/dfc77c92cf9e1c4ed4087b8f4230c301b1c4af1d#/pages/140645962
+
+
+I did find an app that works similar features, however I believe this app changes the product image to include the overlay. I wanted to confirm that our app should not do this, but should overlay the text or additional image over the product image without making any changes to the original images so that they do not get kicked out of Google Shopping.
+https://apps.shopify.com/free-watermarks
+
+============================================================================
+============================================================================
+font-picker: 
+https://www.npmjs.com/package/font-picker-react
+
+draggable:
+https://www.npmjs.com/package/react-draggable
+
+watermark: 
+https://www.npmjs.com/package/watermarkjs-extend
+https://www.npmjs.com/package/image-watermark-2
