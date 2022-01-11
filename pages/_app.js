@@ -37,6 +37,7 @@ function MyProvider(props) {
             credentials: "include",
         },
     });
+    console.log(process.env.NEXT_PUBLIC_API_URL);
     const restLink = new RestLink({
         uri:`${process.env.NEXT_PUBLIC_API_URL}/`,
         customFetch:authenticatedFetch(app),
@@ -52,6 +53,7 @@ function MyProvider(props) {
             return {body: formData, headers};
         }
     });
+    console.log(restLink);
     const restClient = new RestApolloClient({
         cache: new InMemoryCache(),
         link: restLink
