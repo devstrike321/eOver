@@ -269,7 +269,7 @@ const TextOverlaySettings = (props) => {
                             label="Top padding"
                             placeholder=""
                             value={topPadding}
-                            step="0.1"
+                            step="1"
                             suffix="px"
                             onChange={(value) => {setTopPadding(value)}}                        
                         />
@@ -278,7 +278,7 @@ const TextOverlaySettings = (props) => {
                             label="Right padding"
                             placeholder=""
                             value={rightPadding}
-                            step="0.1"
+                            step="1"
                             suffix="px"
                             onChange={(value) => {setRightPadding(value)}}                        
                         />
@@ -287,7 +287,7 @@ const TextOverlaySettings = (props) => {
                             label="Bottom padding"
                             placeholder=""
                             value={bottomPadding}
-                            step="0.1"
+                            step="1"
                             suffix="px"
                             onChange={(value) => {setBottomPadding(value)}}                        
                         />
@@ -296,7 +296,7 @@ const TextOverlaySettings = (props) => {
                             label="Left padding"
                             placeholder=""
                             value={leftPadding}
-                            step="0.1"
+                            step="1"
                             suffix="px"
                             onChange={(value) => {setLeftPadding(value)}}                        
                         />

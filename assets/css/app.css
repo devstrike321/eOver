@@ -78,8 +78,8 @@
     flex-direction: inherit;
 }
 .eo_app_logo{
-    width: 200px;
-    height: 200px
+    width: 150px;
+    height: 150px
 }
 .dahboard_header {
     width: 100%;
@@ -89,6 +89,6 @@
 }
 h2.overlay_product_count_text {
     font-weight: 600;
-    font-size: 46px;
+    font-size: 25px;
     line-height: normal;
 }
