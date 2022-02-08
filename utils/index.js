@@ -1,4 +1,4 @@
-import RedisStorageUtil from './RedisStorage.util';
+import RedisStore from './RedisStorage.util';
 module.exports = {
-    RedisStorage:RedisStorageUtil
+    RedisStorage:RedisStore
 };

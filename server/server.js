@@ -37,7 +37,6 @@ Shopify.Context.initialize({
     sessionStorage.loadCallback.bind(sessionStorage),
     sessionStorage.deleteCallback.bind(sessionStorage)
   )
-  
 });
 
 // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
