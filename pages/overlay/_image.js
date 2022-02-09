@@ -194,7 +194,7 @@ const ImageOverlaySettings = (props) => {
             {queryToast}
             <div className="image_overlay_settings_container">
                 <FormLayout>
-                    <FormLayout.Group>
+                    {/* <FormLayout.Group>
                         <div className="choose_image_type">
                             <ChoiceList
                                 title=""
@@ -203,7 +203,7 @@ const ImageOverlaySettings = (props) => {
                                 onChange={(value) => {setChooseImageType(value)}}
                             />
                         </div>
-                    </FormLayout.Group>
+                    </FormLayout.Group> */}
                     {chooseImageType[0] == 'NEW_IMAGE' ? 
                         <FormLayout.Group>
                             <Stack>

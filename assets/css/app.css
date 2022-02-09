@@ -89,6 +89,15 @@
 }
 h2.overlay_product_count_text {
     font-weight: 600;
-    font-size: 25px;
+    font-size: 18px;
     line-height: normal;
+}
+p.Polaris-DisplayText.Polaris-DisplayText--sizeLarge {
+    font-size: 14px;
+}
+p.Polaris-DisplayText.Polaris-DisplayText--sizeMedium {
+    font-size: 13px;
+}
+.Polaris-Stack > .Polaris-Stack__Item {
+    margin-left: 1.4rem;
 }
