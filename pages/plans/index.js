@@ -1,15 +1,14 @@
 import React, {useCallback,useEffect,useState} from 'react';
-import { Card, Layout, Page ,Stack,DisplayText,Button,SkeletonPage,SkeletonBodyText,Toast, Frame,Banner,Modal,TextContainer,Spinner} from "@shopify/polaris";
+import { Card, Layout, Page ,Stack,DisplayText,Button,SkeletonPage,SkeletonBodyText,Toast, Frame,Banner,Modal,TextContainer} from "@shopify/polaris";
 import { useQuery ,useMutation} from 'react-apollo';
 import { QueryRootShopify,MutationShopify} from '../../graphql';
-import ProductList from "./_list";
 import EmptyStateGlobal from '../../components/EmptyState';
 import _ from 'lodash';
 import moment from 'moment';
 import {Redirect} from '@shopify/app-bridge/actions';
 import { useAppBridge } from '@shopify/app-bridge-react';
 
-const ProductsIndex = (props) => {
+const PlanIndex = (props) => {
     const { shop } = props;
 
     const { data, loading, error} = useQuery(QueryRootShopify.GET_PLANS(),{client:props.restClient});
@@ -128,41 +127,23 @@ const ProductsIndex = (props) => {
                 }
                 menuItems.push(
                     <React.Fragment key={i}>
-                        <Stack alignment="center" vertical={true} distribution="fill">
-                            <DisplayText size="large">{planData.plans.data[i].plan_title}</DisplayText>
-                            <DisplayText>{planData.plans.data[i].plan_monthly_price == 0 ? `${planData.plans.data[i].pm_trial_days} days free trial` : planData.plans.data[i].access_products+' Products'}</DisplayText>
-                            <DisplayText>{'$'+planData.plans.data[i].plan_monthly_price}</DisplayText>
-                            {button}
-                        </Stack>                        
+                        <Layout.Section oneThird>
+                            <Card sectioned>
+                                <Stack alignment="center" vertical={true} distribution="fill">
+                                    <DisplayText size="large">{planData.plans.data[i].plan_title}</DisplayText>
+                                    <DisplayText>{planData.plans.data[i].plan_monthly_price == 0 ? `${planData.plans.data[i].pm_trial_days} days free trial` : planData.plans.data[i].access_products+' Products'}</DisplayText>
+                                    <DisplayText>{'$'+planData.plans.data[i].plan_monthly_price}</DisplayText>
+                                    {button}
+                                </Stack>
+                            </Card>    
+                        </Layout.Section>       
                     </React.Fragment>
                 );
             }
             
             return(
                 <React.Fragment>
-                    <div className='dahboard_header'>
-                        <Layout.Section oneThird>
-                            <img 
-                                alt="logo" 
-                                width="50%" 
-                                height="25%"
-                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/badges/logo.png"
-                                className="eo_app_logo"
-                            />
-                        </Layout.Section>
-                        <Layout.Section oneThird>
-                            <h2 className="overlay_product_count_text">Current Overlay<br/>Product Count: {Number(shopProductOverlayCount)}</h2>
-                        </Layout.Section>
-                        <div className="planInfoSection">
-                            <Layout.Section oneThird>
-                                <Card sectioned>
-                                    <Stack distribution="fill" alignment="center">
-                                        {menuItems}
-                                    </Stack>  
-                                </Card>
-                            </Layout.Section>
-                        </div>
-                    </div>
+                    {menuItems} 
                 </React.Fragment>
             );
         }else{
@@ -179,18 +160,10 @@ const ProductsIndex = (props) => {
     const skeletonState = ()=>{
         return(
             <React.Fragment>
-                <Layout.Section secondary>
-                    <Card sectioned>
-                        <SkeletonPage>
-                            <SkeletonBodyText />
-                        </SkeletonPage>
-                    </Card>
-                </Layout.Section>
-
                 <Layout.Section>
                     <Card sectioned>
                         <SkeletonPage>
-                            <SkeletonBodyText />
+                            <SkeletonBodyText lines={5} />
                         </SkeletonPage>
                     </Card>
                 </Layout.Section>
@@ -288,7 +261,7 @@ const ProductsIndex = (props) => {
     
     return(
         <Frame>
-            <Page title={''} fullWidth={true}>
+            <Page title={'Plans'} fullWidth={true}>
                 {queryToast}
                 {chargeBanner}
                 {<Modal
@@ -320,28 +293,26 @@ const ProductsIndex = (props) => {
                     </Modal.Section>
                 </Modal>
                 }
-
                 <Layout>
                     {error ? <div>{error.message}</div> : null}
-                    {loading ? 
-                        <div style={{top:'50%', position: 'absolute',transform: 'translate(-50%,-50%)',left: '50%'}}><Spinner accessibilityLabel="Spinner" size="large" /></div>
-                        :
-                        <Layout.Section>
-                            <Card sectioned>
-                                <Card.Section>
-                                    <h2 className="overlay_product_count_text">Current Overlay Product Count: {Number(shopProductOverlayCount)}</h2>
-                                </Card.Section>
-
-                                <Card.Section>
-                                    <ProductList {...props} isDisableOverlay={disableOverlay} isPlanExpired={isPlanExpired} setQueryToast={setQueryToast} />
-                                </Card.Section>
-                            </Card>
-                        </Layout.Section>
-                    }   
+                    {loading ? skeletonState() : planInfo(data)}
                 </Layout>
             </Page>
         </Frame>
     );
 };
 
-export default ProductsIndex;
+export async function getServerSideProps(ctx){
+    const { shop } = ctx.query;
+    if (!shop) {
+        return {
+            notFound: true,
+        }
+    }
+    return {
+        props: {
+            shop:shop
+        }, // will be passed to the page component as props
+    }
+};
+export default PlanIndex;

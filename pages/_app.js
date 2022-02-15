@@ -69,15 +69,21 @@ function MyProvider(props) {
         destination:`/settings`
     });
 
+    const planLink = AppLink.create(app,{
+        label:"Plans",
+        destination:`/plans`
+    });
+
     // create navigation
     const navigationMenu = NavigationMenu.create(app,{
-        items:[homeLink,settingsLink]
+        items:[homeLink,settingsLink,planLink]
     });
 
     const AppNav = {
         "/":homeLink,
         "/products":homeLink,
-        "/settings":settingsLink    
+        "/settings":settingsLink,    
+        "/plans":planLink    
     };
     
     navigationMenu.set({active:AppNav[router.pathname]});
