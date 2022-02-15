@@ -276,6 +276,19 @@ const OverlaySettings = (props) => {
                     overlayDiv.style.wordBreak = 'word-break';
                     //default css
 
+                    if(topPadding!=''){ 
+                        overlayDiv.style.paddingTop = isProdScaleAdded ? (topPadding*textScaleProduct/100)+'px': topPadding+'px'; 
+                    }
+                    if(rightPadding!=''){ 
+                        overlayDiv.style.paddingRight = isProdScaleAdded ? (rightPadding*textScaleProduct/100)+'px': rightPadding+'px'; 
+                    }
+                    if(bottomPadding!=''){ 
+                        overlayDiv.style.paddingBottom = isProdScaleAdded ? (bottomPadding*textScaleProduct/100)+'px': bottomPadding+'px';
+                    }
+                    if(leftPadding!=''){ 
+                        overlayDiv.style.paddingLeft = isProdScaleAdded ? (leftPadding*textScaleProduct/100)+'px': leftPadding+'px'; 
+                    }
+                    
                     let rotate_css = '';
                     if(rotation!=''){
                         overlayDiv.style.transform = 'rotate('+rotation+'deg)';
@@ -438,7 +451,12 @@ const OverlaySettings = (props) => {
                             overlayDiv.style.lineHeight = 'normal';
                             overlayDiv.style.wordBreak = 'word-break';
                             //default css
-        
+                            
+                            if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
+                            if(rightPadding!=''){ overlayDiv.style.paddingRight = rightPadding+'px'; }
+                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = bottomPadding+'px'; }
+                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = leftPadding+'px'; }
+
                             let rotate_css = '';
                             if(rotation!=''){
                                 overlayDiv.style.transform = 'rotate('+rotation+'deg)';

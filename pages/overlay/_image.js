@@ -18,8 +18,8 @@ const ImageOverlaySettings = (props) => {
     
     //#region :- Props Declaration
     const productId = props.productId;
-    const {selectedImagePosition,selectedImageDisplayInOptions,selectedImage,overlayEditId,opacity,rotation,selectedGalleryImageURL,chooseImageType,imageWidth,imageScaleCollection,imageScaleProduct,imageScaleSearch} = props.stateKeys;
-	const {setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setOverlayEditId,setImageOverlaySrc,setOpacity,setRotation,setSelectedGalleryImageURL,setChooseImageType,setImageWidth,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch} = props.stateFunc;
+    const {selectedImagePosition,selectedImageDisplayInOptions,selectedImage,overlayEditId,opacity,rotation,selectedGalleryImageURL,topPadding,rightPadding,bottomPadding,leftPadding,chooseImageType,imageWidth,imageScaleCollection,imageScaleProduct,imageScaleSearch} = props.stateKeys;
+	const {setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setOverlayEditId,setImageOverlaySrc,setOpacity,setRotation,setSelectedGalleryImageURL,setTopPadding,setRightPadding,setBottomPadding,setLeftPadding,setChooseImageType,setImageWidth,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch} = props.stateFunc;
     //#endregion    
     
     //#region :- Options List
@@ -161,6 +161,10 @@ const ImageOverlaySettings = (props) => {
             'opacity':opacity,
             'rotation':rotation,
             'position':selectedImagePosition,
+            'padding_top':topPadding,
+            'padding_right':rightPadding,
+            'padding_bottom':bottomPadding,
+            'padding_left':leftPadding,
             'status':'Active',
             'display_in_collection': _.includes(selectedImageDisplayInOptions, 'COLLECTION') ? 'Yes' : 'No',
             'display_in_product':_.includes(selectedImageDisplayInOptions, 'PRODUCT') ? 'Yes' : 'No',
@@ -300,6 +304,44 @@ const ImageOverlaySettings = (props) => {
                             options={imagePositions}
                             onChange={(value) => {setSelectedImagePosition(value)}}
                             value={selectedImagePosition}
+                        />
+                    </FormLayout.Group>
+                    <FormLayout.Group>
+                        <TextField 
+                            type="number" 
+                            label="Top padding"
+                            placeholder=""
+                            value={topPadding}
+                            step="1"
+                            suffix="px"
+                            onChange={(value) => {setTopPadding(value)}}                        
+                        />
+                        <TextField 
+                            type="number" 
+                            label="Right padding"
+                            placeholder=""
+                            value={rightPadding}
+                            step="1"
+                            suffix="px"
+                            onChange={(value) => {setRightPadding(value)}}                        
+                        />
+                        <TextField 
+                            type="number" 
+                            label="Bottom padding"
+                            placeholder=""
+                            value={bottomPadding}
+                            step="1"
+                            suffix="px"
+                            onChange={(value) => {setBottomPadding(value)}}                        
+                        />
+                        <TextField 
+                            type="number" 
+                            label="Left padding"
+                            placeholder=""
+                            value={leftPadding}
+                            step="1"
+                            suffix="px"
+                            onChange={(value) => {setLeftPadding(value)}}                        
                         />
                     </FormLayout.Group>
                     <FormLayout.Group>

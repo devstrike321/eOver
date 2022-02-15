@@ -84,6 +84,11 @@ const OverlayList = forwardRef((props, ref) => {
             setImageScaleProduct(item.scale_in_product);
             setImageScaleSearch(item.scale_in_search);
 
+            setTopPadding(item.padding_top);
+            setRightPadding(item.padding_right);
+            setBottomPadding(item.padding_bottom);
+            setLeftPadding(item.padding_left);
+
             const imageDisplayInArray = [];
             if(item.display_in_product == 'Yes'){
                 imageDisplayInArray.push("PRODUCT");
@@ -249,6 +254,13 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Opacity: {opacity}</List.Item>
                                     </List>
 
+                                    <List type="bullet">
+                                        <List.Item>Top padding: {padding_top != '' ? padding_top+'px' : '0px'}</List.Item>
+                                        <List.Item>Right padding: {padding_right != '' ? padding_right+'px' : '0px'}</List.Item>
+                                        <List.Item>Bottom padding: {padding_bottom != '' ? padding_bottom+'px' : '0px'}</List.Item>
+                                        <List.Item>Left padding: {padding_left != '' ? padding_left+'px' : '0px'}</List.Item>
+                                    </List>
+                                    
                                     <List type="bullet">
                                         <List.Item>Scale in collection: {(scale_in_collection != '' && scale_in_collection != null) ? scale_in_collection+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in product: {(scale_in_product != '' && scale_in_product != null)? scale_in_product+'%' : '0%'}</List.Item>
