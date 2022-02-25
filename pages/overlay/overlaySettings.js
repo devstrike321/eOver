@@ -446,7 +446,7 @@ const OverlaySettings = (props) => {
                             //default css
                             overlayDiv.style.zIndex = '1';
                             overlayDiv.style.width = 'auto';
-                            overlayDiv.style.maxWidth = '50%';
+                            overlayDiv.style.maxWidth = scaleInProduct+'%';
                             overlayDiv.style.height = 'auto';
                             overlayDiv.style.position = 'absolute';
                             overlayDiv.style.lineHeight = 'normal';
