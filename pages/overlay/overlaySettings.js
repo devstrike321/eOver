@@ -277,16 +277,16 @@ const OverlaySettings = (props) => {
                     //default css
 
                     if(topPadding!=''){ 
-                        overlayDiv.style.paddingTop = isProdScaleAdded ? (topPadding*textScaleProduct/100)+'px': topPadding+'px'; 
+                        overlayDiv.style.paddingTop = isProdScaleAdded ? (topPadding*imageScaleProduct/100)+'px': topPadding+'px'; 
                     }
                     if(rightPadding!=''){ 
-                        overlayDiv.style.paddingRight = isProdScaleAdded ? (rightPadding*textScaleProduct/100)+'px': rightPadding+'px'; 
+                        overlayDiv.style.paddingRight = isProdScaleAdded ? (rightPadding*imageScaleProduct/100)+'px': rightPadding+'px'; 
                     }
                     if(bottomPadding!=''){ 
-                        overlayDiv.style.paddingBottom = isProdScaleAdded ? (bottomPadding*textScaleProduct/100)+'px': bottomPadding+'px';
+                        overlayDiv.style.paddingBottom = isProdScaleAdded ? (bottomPadding*imageScaleProduct/100)+'px': bottomPadding+'px';
                     }
                     if(leftPadding!=''){ 
-                        overlayDiv.style.paddingLeft = isProdScaleAdded ? (leftPadding*textScaleProduct/100)+'px': leftPadding+'px'; 
+                        overlayDiv.style.paddingLeft = isProdScaleAdded ? (leftPadding*imageScaleProduct/100)+'px': leftPadding+'px'; 
                     }
                     
                     let rotate_css = '';
