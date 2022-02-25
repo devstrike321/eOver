@@ -374,6 +374,7 @@ const OverlaySettings = (props) => {
                         let leftPadding = overlayRow.padding_left;
                         let selectedImagePosition = overlayRow.position;
                         let imageOverlaySrc = overlayRow.image_url;
+                        let scaleInProduct = overlayRow.scale_in_product;
 
                         if(selectedTab=='0'){
                             //text overlay
@@ -400,7 +401,7 @@ const OverlaySettings = (props) => {
                                 overlayFontLink.setAttribute("href", "https://fonts.googleapis.com/css?family="+fontFamily);
                                 document.getElementsByTagName('head')[0].insertAdjacentElement("beforeend", overlayFontLink);
                             }
-                            if(fontSize!=''){ overlayDiv.style.fontSize = fontSize+'px'; }
+                            if(fontSize!=''){ overlayDiv.style.fontSize = (fontSize*scaleInProduct/100)+'px'; }
                             if(opacity!=''){ overlayDiv.style.opacity = opacity; }
                             if(selectedTextAlign!=''){ overlayDiv.style.textAlign = selectedTextAlign; }
                             if(fontcolor!=''){ overlayDiv.style.color = fontcolor; }
@@ -410,10 +411,10 @@ const OverlaySettings = (props) => {
                                 overlayDiv.style.backgroundColor = 'transparent'; 
                             }
         
-                            if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
-                            if(rightPadding!=''){ overlayDiv.style.paddingRight = rightPadding+'px'; }
-                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = bottomPadding+'px'; }
-                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = leftPadding+'px'; }
+                            if(topPadding!=''){ overlayDiv.style.paddingTop = (topPadding*scaleInProduct/100)+'px'; }
+                            if(rightPadding!=''){ overlayDiv.style.paddingRight = (rightPadding*scaleInProduct/100)+'px'; }
+                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = (bottomPadding*scaleInProduct/100)+'px'; }
+                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = (leftPadding*scaleInProduct/100)+'px'; }
                             
                             let rotate_css = '';
                             if(rotation!=''){
@@ -452,10 +453,10 @@ const OverlaySettings = (props) => {
                             overlayDiv.style.wordBreak = 'word-break';
                             //default css
                             
-                            if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
-                            if(rightPadding!=''){ overlayDiv.style.paddingRight = rightPadding+'px'; }
-                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = bottomPadding+'px'; }
-                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = leftPadding+'px'; }
+                            if(topPadding!=''){ overlayDiv.style.paddingTop = (topPadding*scaleInProduct/100)+'px'; }
+                            if(rightPadding!=''){ overlayDiv.style.paddingRight = (rightPadding*scaleInProduct/100)+'px'; }
+                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = (bottomPadding*scaleInProduct/100)+'px'; }
+                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = (leftPadding*scaleInProduct/100)+'px'; }
 
                             let rotate_css = '';
                             if(rotation!=''){
