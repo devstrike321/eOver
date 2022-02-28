@@ -269,7 +269,7 @@ const OverlaySettings = (props) => {
                     //default css
                     overlayDiv.style.zIndex = '1';
                     overlayDiv.style.width = 'auto';
-                    overlayDiv.style.maxWidth = isProdScaleAdded ? imageScaleProduct+'%' : '50%';
+                    overlayDiv.style.maxWidth = '50%';
                     overlayDiv.style.height = 'auto';
                     overlayDiv.style.position = 'absolute';
                     overlayDiv.style.lineHeight = 'normal';
@@ -277,16 +277,16 @@ const OverlaySettings = (props) => {
                     //default css
 
                     if(topPadding!=''){ 
-                        overlayDiv.style.paddingTop = isProdScaleAdded ? (topPadding*imageScaleProduct/100)+'px': topPadding+'px'; 
+                        overlayDiv.style.paddingTop = topPadding+'px'; 
                     }
                     if(rightPadding!=''){ 
-                        overlayDiv.style.paddingRight = isProdScaleAdded ? (rightPadding*imageScaleProduct/100)+'px': rightPadding+'px'; 
+                        overlayDiv.style.paddingRight = rightPadding+'px'; 
                     }
                     if(bottomPadding!=''){ 
-                        overlayDiv.style.paddingBottom = isProdScaleAdded ? (bottomPadding*imageScaleProduct/100)+'px': bottomPadding+'px';
+                        overlayDiv.style.paddingBottom = bottomPadding+'px';
                     }
                     if(leftPadding!=''){ 
-                        overlayDiv.style.paddingLeft = isProdScaleAdded ? (leftPadding*imageScaleProduct/100)+'px': leftPadding+'px'; 
+                        overlayDiv.style.paddingLeft = leftPadding+'px'; 
                     }
                     
                     let rotate_css = '';
@@ -446,17 +446,17 @@ const OverlaySettings = (props) => {
                             //default css
                             overlayDiv.style.zIndex = '1';
                             overlayDiv.style.width = 'auto';
-                            overlayDiv.style.maxWidth = scaleInProduct+'%';
+                            overlayDiv.style.maxWidth = '50%';
                             overlayDiv.style.height = 'auto';
                             overlayDiv.style.position = 'absolute';
                             overlayDiv.style.lineHeight = 'normal';
                             overlayDiv.style.wordBreak = 'word-break';
                             //default css
                             
-                            if(topPadding!=''){ overlayDiv.style.paddingTop = (topPadding*scaleInProduct/100)+'px'; }
-                            if(rightPadding!=''){ overlayDiv.style.paddingRight = (rightPadding*scaleInProduct/100)+'px'; }
-                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = (bottomPadding*scaleInProduct/100)+'px'; }
-                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = (leftPadding*scaleInProduct/100)+'px'; }
+                            if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
+                            if(rightPadding!=''){ overlayDiv.style.paddingRight = rightPadding+'px'; }
+                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = bottomPadding+'px'; }
+                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = leftPadding+'px'; }
 
                             let rotate_css = '';
                             if(rotation!=''){

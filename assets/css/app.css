@@ -98,3 +98,9 @@ p.Polaris-DisplayText.Polaris-DisplayText--sizeMedium {
 p.Polaris-DisplayText.Polaris-DisplayText--sizeLarge {
     font-size: 30px;
 }
+.product_list .Polaris-Stack{
+	justify-content: space-between;
+}
+.product_list .Polaris-ResourceItem__Container{
+	align-items: center;
+}

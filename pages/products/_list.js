@@ -115,24 +115,26 @@ const ProductList = (props) => {
                                         //     }
                                         // }]}
                                         persistActions
-                                    >   
-                                    <Stack>
-                                        <h3>
-                                            <TextStyle variation="strong">{title}</TextStyle>
-                                        </h3>
-                                        <Button 
-                                            plain
-                                            disabled={isDisableOverlay}
-                                            onClick = {()=> {
-                                                isPlanExpired ?
-                                                setQueryToast([<Toast onDismiss={() => {
-                                                    setQueryToast([]);
-                                                }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
-                                                :
-                                                handleManageOvelay(legacyResourceId)
-                                            }}
-                                        >Manage overlay</Button>
-                                    </Stack>
+                                    > 
+                                        <div className='product_list'>
+                                            <Stack>
+                                                <h3>
+                                                    <TextStyle variation="strong">{title}</TextStyle>
+                                                </h3>
+                                                <Button 
+                                                    plain
+                                                    disabled={isDisableOverlay}
+                                                    onClick = {()=> {
+                                                        isPlanExpired ?
+                                                        setQueryToast([<Toast onDismiss={() => {
+                                                            setQueryToast([]);
+                                                        }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
+                                                        :
+                                                        handleManageOvelay(legacyResourceId)
+                                                    }}
+                                                >Manage overlay</Button>
+                                            </Stack>
+                                        </div>  
                                     </ResourceItem>
                                 );
                             }}
