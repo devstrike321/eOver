@@ -1,4 +1,4 @@
-import {TextStyle,Filters, ResourceItem, ResourceList, Pagination, Thumbnail,Toast} from '@shopify/polaris';
+import {TextStyle,Filters, ResourceItem, ResourceList, Pagination, Thumbnail,Toast, Stack} from '@shopify/polaris';
 import React, {useCallback, useEffect, useState} from 'react';
 import { Query } from 'react-apollo';
 import { QueryRootShopify } from '../../graphql';
@@ -101,24 +101,38 @@ const ProductList = (props) => {
                                                 handleManageOvelay(legacyResourceId)
                                         }}
                                         accessibilityLabel={`View details for ${title}`}
-                                        shortcutActions={[{
-                                            content: 'Manage overlay',
-                                            accessibilityLabel: `Manage overlay`,
-                                            disabled:isDisableOverlay,
-                                            onClick: () => {
+                                        // shortcutActions={[{
+                                        //     content: 'Manage overlay',
+                                        //     accessibilityLabel: `Manage overlay`,
+                                        //     disabled:isDisableOverlay,
+                                        //     onClick: () => {
+                                        //         isPlanExpired ?
+                                        //         setQueryToast([<Toast onDismiss={() => {
+                                        //             setQueryToast([]);
+                                        //         }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
+                                        //         :
+                                        //         handleManageOvelay(legacyResourceId)
+                                        //     }
+                                        // }]}
+                                        persistActions
+                                    >   
+                                    <Stack>
+                                        <h3>
+                                            <TextStyle variation="strong">{title}</TextStyle>
+                                        </h3>
+                                        <Button 
+                                            plain
+                                            disabled={isDisableOverlay}
+                                            onClick = {()=> {
                                                 isPlanExpired ?
                                                 setQueryToast([<Toast onDismiss={() => {
                                                     setQueryToast([]);
                                                 }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
                                                 :
                                                 handleManageOvelay(legacyResourceId)
-                                            }
-                                        }]}
-                                        persistActions
-                                    >
-                                        <h3>
-                                            <TextStyle variation="strong">{title}</TextStyle>
-                                        </h3>
+                                            }}
+                                        >Manage overlay</Button>
+                                    </Stack>
                                     </ResourceItem>
                                 );
                             }}
