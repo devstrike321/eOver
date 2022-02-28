@@ -78,45 +78,45 @@ const ProductList = (props) => {
                 }
                 return (
                     <React.Fragment>
-                        <ResourceList
-                            loading={loading}
-                            filterControl={filterControl}
-                            resourceName={resourceName}
-                            items={!loading ? data.products.edges : []}
-                            renderItem={(item,id,index)=> {
-                                const { title, featuredMedia, legacyResourceId } = item.node;
-                                let featuredImage = featuredMedia?.preview?.image?.originalSrc || '';
-                                const media = featuredImage !== '' ? <Thumbnail source={featuredImage} size="medium" /> : null;
-                                
-                                return (
-                                    <ResourceItem 
-                                        id={id}  
-                                        media={media}
-                                        onClick={() => {
-                                            isPlanExpired ? 
-                                                setQueryToast([<Toast onDismiss={() => {
-                                                    setQueryToast([]);
-                                                }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />]) 
-                                            : 
-                                                handleManageOvelay(legacyResourceId)
-                                        }}
-                                        accessibilityLabel={`View details for ${title}`}
-                                        // shortcutActions={[{
-                                        //     content: 'Manage overlay',
-                                        //     accessibilityLabel: `Manage overlay`,
-                                        //     disabled:isDisableOverlay,
-                                        //     onClick: () => {
-                                        //         isPlanExpired ?
-                                        //         setQueryToast([<Toast onDismiss={() => {
-                                        //             setQueryToast([]);
-                                        //         }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
-                                        //         :
-                                        //         handleManageOvelay(legacyResourceId)
-                                        //     }
-                                        // }]}
-                                        persistActions
-                                    > 
-                                        <div className='product_list'>
+                        <div className='product_list'>
+                            <ResourceList
+                                loading={loading}
+                                filterControl={filterControl}
+                                resourceName={resourceName}
+                                items={!loading ? data.products.edges : []}
+                                renderItem={(item,id,index)=> {
+                                    const { title, featuredMedia, legacyResourceId } = item.node;
+                                    let featuredImage = featuredMedia?.preview?.image?.originalSrc || '';
+                                    const media = featuredImage !== '' ? <Thumbnail source={featuredImage} size="medium" /> : null;
+                                    
+                                    return (
+                                        <ResourceItem 
+                                            id={id}  
+                                            media={media}
+                                            onClick={() => {
+                                                isPlanExpired ? 
+                                                    setQueryToast([<Toast onDismiss={() => {
+                                                        setQueryToast([]);
+                                                    }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />]) 
+                                                : 
+                                                    handleManageOvelay(legacyResourceId)
+                                            }}
+                                            accessibilityLabel={`View details for ${title}`}
+                                            // shortcutActions={[{
+                                            //     content: 'Manage overlay',
+                                            //     accessibilityLabel: `Manage overlay`,
+                                            //     disabled:isDisableOverlay,
+                                            //     onClick: () => {
+                                            //         isPlanExpired ?
+                                            //         setQueryToast([<Toast onDismiss={() => {
+                                            //             setQueryToast([]);
+                                            //         }} duration="1500" key="ugrade-plan-toast" content={upgradePlanText} error={true} />])
+                                            //         :
+                                            //         handleManageOvelay(legacyResourceId)
+                                            //     }
+                                            // }]}
+                                            persistActions
+                                        > 
                                             <Stack>
                                                 <h3>
                                                     <TextStyle variation="strong">{title}</TextStyle>
@@ -134,28 +134,28 @@ const ProductList = (props) => {
                                                     }}
                                                 >Manage overlay</Button>
                                             </Stack>
-                                        </div>  
-                                    </ResourceItem>
-                                );
-                            }}
-                        />
-                        <div className="prodlist_pagination">
-                            <Pagination 
-                                hasPrevious={pageInfo.hasPreviousPage}
-                                onPrevious={() => {
-                                    setLastLimit(5);
-                                    setBeforeCursor(_.nth(data.products.edges,0).cursor);
-                                    setFirstLimit(null);
-                                    setAfterCursor(null);
-                                }}
-                                hasNext={pageInfo.hasNextPage}
-                                onNext={() => {
-                                    setFirstLimit(5);
-                                    setAfterCursor(_.nth(data.products.edges,(data.products.edges.length -1 )).cursor);
-                                    setLastLimit(null);
-                                    setBeforeCursor(null);
+                                        </ResourceItem>
+                                    );
                                 }}
                             />
+                            <div className="prodlist_pagination">
+                                <Pagination 
+                                    hasPrevious={pageInfo.hasPreviousPage}
+                                    onPrevious={() => {
+                                        setLastLimit(5);
+                                        setBeforeCursor(_.nth(data.products.edges,0).cursor);
+                                        setFirstLimit(null);
+                                        setAfterCursor(null);
+                                    }}
+                                    hasNext={pageInfo.hasNextPage}
+                                    onNext={() => {
+                                        setFirstLimit(5);
+                                        setAfterCursor(_.nth(data.products.edges,(data.products.edges.length -1 )).cursor);
+                                        setLastLimit(null);
+                                        setBeforeCursor(null);
+                                    }}
+                                />
+                            </div>
                         </div>
                     </React.Fragment>
                 );
