@@ -268,12 +268,13 @@ const OverlaySettings = (props) => {
 
                     //default css
                     overlayDiv.style.zIndex = '1';
-                    overlayDiv.style.width = 'auto';
-                    overlayDiv.style.maxWidth = isProdScaleAdded ? imageScaleProduct+'%' : '50%';
-                    overlayDiv.style.height = 'auto';
+                    overlayDiv.style.width = '100%';
+                    overlayDiv.style.height = '100%';
                     overlayDiv.style.position = 'absolute';
-                    overlayDiv.style.lineHeight = 'normal';
-                    overlayDiv.style.wordBreak = 'word-break';
+                    overlayDiv.style.display = 'flex';
+                    overlayDiv.style.alignItems = 'center';
+                    overlayDiv.style.justifyContent  = 'center';
+                    overlayDiv.style.overflow  = 'hidden';
                     //default css
 
                     if(topPadding!=''){ 
@@ -317,6 +318,11 @@ const OverlaySettings = (props) => {
                     overlayImg.style.bottom = 'auto';
                     overlayImg.src = imageOverlaySrc;
 
+                    var overlayImg = document.createElement('img');
+                    overlayImg.style.position = 'absolute';
+                    overlayImg.src = imageOverlaySrc;
+                    overlayImg.style.maxWidth = isProdScaleAdded ? imageScaleProduct+'%' : '50%';
+                    
                     //set overlay html before img element
                     overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
                     imgElem.insertAdjacentElement("beforebegin", overlayDiv);
@@ -442,15 +448,16 @@ const OverlaySettings = (props) => {
                             //image overlay
                             var overlayDiv = document.createElement('div');
                             overlayDiv.className = 'overlay-image-section';
-        
+
                             //default css
                             overlayDiv.style.zIndex = '1';
-                            overlayDiv.style.width = 'auto';
-                            overlayDiv.style.maxWidth = scaleInProduct+'%';
-                            overlayDiv.style.height = 'auto';
+                            overlayDiv.style.width = '100%';
+                            overlayDiv.style.height = '100%';
                             overlayDiv.style.position = 'absolute';
-                            overlayDiv.style.lineHeight = 'normal';
-                            overlayDiv.style.wordBreak = 'word-break';
+                            overlayDiv.style.display = 'flex';
+                            overlayDiv.style.alignItems = 'center';
+                            overlayDiv.style.justifyContent  = 'center';
+                            overlayDiv.style.overflow  = 'hidden';
                             //default css
                             
                             if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
@@ -485,7 +492,12 @@ const OverlaySettings = (props) => {
                             overlayImg.style.right = 'auto';
                             overlayImg.style.bottom = 'auto';
                             overlayImg.src = imageOverlaySrc;
-        
+                            
+                            var overlayImg = document.createElement('img');
+                            overlayImg.style.position = 'absolute';
+                            overlayImg.src = ol.imageOverlaySrc;
+                            overlayImg.style.maxWidth = scaleInProduct ? scaleInProduct+'%' : '50%';
+
                             //set overlay html before img element
                             overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
                             imgElem.insertAdjacentElement("beforebegin", overlayDiv);

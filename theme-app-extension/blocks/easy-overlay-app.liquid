@@ -124,11 +124,13 @@ Don't change this file
 
               //default css
               overlayDiv.style.zIndex = '1';
-              overlayDiv.style.width = 'auto';
-              overlayDiv.style.height = 'auto';
+              overlayDiv.style.width = '100%';
+              overlayDiv.style.height = '100%';
               overlayDiv.style.position = 'absolute';
-              overlayDiv.style.lineHeight = 'normal';
-              overlayDiv.style.wordBreak = 'break-all';
+              overlayDiv.style.display = 'flex';
+              overlayDiv.style.alignItems = 'center';
+              overlayDiv.style.justifyContent  = 'center';
+              overlayDiv.style.overflow  = 'hidden';
               //default css
 
               if(ol.padding_top!=''){ 
@@ -178,15 +180,6 @@ Don't change this file
                 rotate_css = ' rotate('+ol.rotation+'deg)';
               }
               
-              overlayDiv.style.maxWidth = '50%';
-              if(page=='collection' && ol.scale_in_collection>0){
-                overlayDiv.style.maxWidth = ol.scale_in_collection+'%';   
-              }else if(page=='product' && ol.scale_in_product>0){
-                overlayDiv.style.maxWidth = ol.scale_in_product+'%';   
-              }else if(page=='search' && ol.scale_in_search>0){
-                overlayDiv.style.maxWidth = ol.scale_in_search+'%';   
-              }
-              
               if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
 
               if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
@@ -200,15 +193,18 @@ Don't change this file
               else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
 
               var overlayImg = document.createElement('img');
-              overlayImg.style.width = '100%';
-              overlayImg.style.height = '100%';
-              overlayImg.style.position = 'unset';
-              overlayImg.style.top = 'auto';
-              overlayImg.style.left = 'auto';
-              overlayImg.style.right = 'auto';
-              overlayImg.style.bottom = 'auto';
+              overlayImg.style.position = 'absolute';
               overlayImg.src = ol.image_url;
-
+			
+              overlayImg.style.maxWidth = '50%';
+              if(page=='collection' && ol.scale_in_collection>0){
+                overlayImg.style.maxWidth = ol.scale_in_collection+'%';   
+              }else if(page=='product' && ol.scale_in_product>0){
+                overlayImg.style.maxWidth = ol.scale_in_product+'%';   
+              }else if(page=='search' && ol.scale_in_search>0){
+                overlayImg.style.maxWidth = ol.scale_in_search+'%';   
+              }
+              
               //set overlay html before img element
               overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
               imgElem.insertAdjacentElement("beforebegin", overlayDiv);
@@ -257,11 +253,3 @@ Don't change this file
 </script>
 
 {% endif %}
-
-{% schema %}
-  {
-    "name": "Easy Overlay Settings",
-    "target": "body",
-    "settings": []
-  }
-{% endschema %}
