@@ -309,20 +309,10 @@ const OverlaySettings = (props) => {
 					else if(selectedImagePosition=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
 
                     var overlayImg = document.createElement('img');
-                    overlayImg.style.width = imageWidth+'%';
-                    overlayImg.style.height = '100%';
-                    overlayImg.style.position = 'unset';
-                    overlayImg.style.top = 'auto';
-                    overlayImg.style.left = 'auto';
-                    overlayImg.style.right = 'auto';
-                    overlayImg.style.bottom = 'auto';
-                    overlayImg.src = imageOverlaySrc;
-
-                    var overlayImg = document.createElement('img');
                     overlayImg.style.position = 'absolute';
                     overlayImg.src = imageOverlaySrc;
                     overlayImg.style.maxWidth = isProdScaleAdded ? imageScaleProduct+'%' : '50%';
-                    
+
                     //set overlay html before img element
                     overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
                     imgElem.insertAdjacentElement("beforebegin", overlayDiv);
@@ -482,20 +472,10 @@ const OverlaySettings = (props) => {
                             else if(selectedImagePosition=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
                             else if(selectedImagePosition=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
                             else if(selectedImagePosition=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
-        
-                            var overlayImg = document.createElement('img');
-                            overlayImg.style.width = imageWidth+'%';
-                            overlayImg.style.height = '100%';
-                            overlayImg.style.position = 'unset';
-                            overlayImg.style.top = 'auto';
-                            overlayImg.style.left = 'auto';
-                            overlayImg.style.right = 'auto';
-                            overlayImg.style.bottom = 'auto';
-                            overlayImg.src = imageOverlaySrc;
                             
                             var overlayImg = document.createElement('img');
                             overlayImg.style.position = 'absolute';
-                            overlayImg.src = ol.imageOverlaySrc;
+                            overlayImg.src = imageOverlaySrc;
                             overlayImg.style.maxWidth = scaleInProduct ? scaleInProduct+'%' : '50%';
 
                             //set overlay html before img element
