@@ -128,8 +128,6 @@ Don't change this file
               overlayDiv.style.height = '100%';
               overlayDiv.style.position = 'absolute';
               overlayDiv.style.display = 'flex';
-              overlayDiv.style.alignItems = 'center';
-              overlayDiv.style.justifyContent  = 'center';
               overlayDiv.style.overflow  = 'hidden';
               //default css
 
@@ -182,15 +180,71 @@ Don't change this file
               
               if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
 
-              if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
-              else if(ol.position=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-              else if(ol.position=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
-              else if(ol.position=='MIDDLE_LEFT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-              else if(ol.position=='MIDDLE_CENTER'){ overlayDiv.style.top = '50%';overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; }
-              else if(ol.position=='MIDDLE_RIGHT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 'auto';overlayDiv.style.right = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-              else if(ol.position=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
-              else if(ol.position=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-              else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
+              if(ol.position=='TOP_LEFT'){ 
+                overlayDiv.style.top = 0;
+                overlayDiv.style.left = 0;
+                overlayDiv.style.alignItems = 'flex-start';
+                overlayDiv.style.justifyContent  = 'left';
+              }
+              else if(ol.position=='TOP_CENTER'){
+                overlayDiv.style.top = 0;
+                overlayDiv.style.left = '50%';
+                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css;
+                overlayDiv.style.alignItems = 'flex-start';
+                overlayDiv.style.justifyContent  = 'center';
+              }
+              else if(ol.position=='TOP_RIGHT'){
+                overlayDiv.style.top = 0;
+                overlayDiv.style.left = 'auto';
+                overlayDiv.style.right = 0; 
+                overlayDiv.style.alignItems = 'flex-start';
+                overlayDiv.style.justifyContent  = 'right';
+              }
+              else if(ol.position=='MIDDLE_LEFT'){
+                overlayDiv.style.top = '50%';
+                overlayDiv.style.left = 0;
+                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
+                overlayDiv.style.alignItems = 'center';
+                overlayDiv.style.justifyContent  = 'flex-start';
+              }
+              else if(ol.position=='MIDDLE_CENTER'){
+                overlayDiv.style.top = '50%';
+                overlayDiv.style.left = '50%';
+                overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; 
+                overlayDiv.style.alignItems = 'center';
+                overlayDiv.style.justifyContent  = 'center';
+              }
+              else if(ol.position=='MIDDLE_RIGHT'){
+                overlayDiv.style.top = '50%';
+                overlayDiv.style.left = 'auto';
+                overlayDiv.style.right = 0;
+                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css;
+                overlayDiv.style.alignItems = 'center';
+                overlayDiv.style.justifyContent  = 'right';
+              }
+              else if(ol.position=='BOTTOM_LEFT'){
+                overlayDiv.style.top = 'auto';
+                overlayDiv.style.left = 0;
+                overlayDiv.style.bottom = 0; 
+                overlayDiv.style.alignItems = 'flex-end';
+                overlayDiv.style.justifyContent  = 'left';
+              }
+              else if(ol.position=='BOTTOM_CENTER'){
+                overlayDiv.style.top = 'auto';
+                overlayDiv.style.left = '50%';
+                overlayDiv.style.bottom = 0;
+                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
+                overlayDiv.style.alignItems = 'flex-end';
+                overlayDiv.style.justifyContent  = 'center';
+              }
+              else if(ol.position=='BOTTOM_RIGHT'){
+                overlayDiv.style.top = 'auto';
+                overlayDiv.style.left = 'auto';
+                overlayDiv.style.bottom = 0;
+                overlayDiv.style.right = 0; 
+                overlayDiv.style.alignItems = 'flex-end';
+                overlayDiv.style.justifyContent  = 'right';
+              }
 
               var overlayImg = document.createElement('img');
               overlayImg.style.position = 'absolute';
@@ -212,7 +266,6 @@ Don't change this file
               //set relative css in parent element
               imgElem.parentElement.style.position = 'relative';
             }
-
           });
         }
       });
@@ -253,3 +306,11 @@ Don't change this file
 </script>
 
 {% endif %}
+
+{% schema %}
+  {
+    "name": "Easy Overlay Settings",
+    "target": "body",
+    "settings": []
+  }
+{% endschema %}

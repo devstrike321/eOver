@@ -298,15 +298,71 @@ const OverlaySettings = (props) => {
 
                     if(opacity!=''){ overlayDiv.style.opacity = opacity; }
 
-                    if(selectedImagePosition=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
-					else if(selectedImagePosition=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-					else if(selectedImagePosition=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
-					else if(selectedImagePosition=='MIDDLE_LEFT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-					else if(selectedImagePosition=='MIDDLE_CENTER'){ overlayDiv.style.top = '50%';overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; }
-					else if(selectedImagePosition=='MIDDLE_RIGHT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 'auto';overlayDiv.style.right = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-					else if(selectedImagePosition=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
-					else if(selectedImagePosition=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-					else if(selectedImagePosition=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
+                    if(selectedImagePosition=='TOP_LEFT'){ 
+                        overlayDiv.style.top = 0;
+                        overlayDiv.style.left = 0; 
+                        overlayDiv.style.alignItems = 'flex-start';
+                        overlayDiv.style.justifyContent  = 'left';
+                    }
+					else if(selectedImagePosition=='TOP_CENTER'){ 
+                        overlayDiv.style.top = 0;
+                        overlayDiv.style.left = '50%';
+                        overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
+                        overlayDiv.style.alignItems = 'flex-start';
+                        overlayDiv.style.justifyContent  = 'center';
+                    }
+					else if(selectedImagePosition=='TOP_RIGHT'){ 
+                        overlayDiv.style.top = 0;
+                        overlayDiv.style.left = 'auto';
+                        overlayDiv.style.right = 0; 
+                        overlayDiv.style.alignItems = 'flex-start';
+                        overlayDiv.style.justifyContent  = 'right';
+                    }
+					else if(selectedImagePosition=='MIDDLE_LEFT'){ 
+                        overlayDiv.style.top = '50%';
+                        overlayDiv.style.left = 0;
+                        overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
+                        overlayDiv.style.alignItems = 'center';
+                        overlayDiv.style.justifyContent  = 'flex-start';
+                    }
+					else if(selectedImagePosition=='MIDDLE_CENTER'){ 
+                        overlayDiv.style.top = '50%';
+                        overlayDiv.style.left = '50%';
+                        overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; 
+                        overlayDiv.style.alignItems = 'center';
+                        overlayDiv.style.justifyContent  = 'center';
+                    }
+					else if(selectedImagePosition=='MIDDLE_RIGHT'){ 
+                        overlayDiv.style.top = '50%';
+                        overlayDiv.style.left = 'auto';
+                        overlayDiv.style.right = 0;
+                        overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
+                        overlayDiv.style.alignItems = 'center';
+                        overlayDiv.style.justifyContent  = 'right';
+                    }
+					else if(selectedImagePosition=='BOTTOM_LEFT'){ 
+                        overlayDiv.style.top = 'auto';
+                        overlayDiv.style.left = 0;
+                        overlayDiv.style.bottom = 0; 
+                        overlayDiv.style.alignItems = 'flex-end';
+                        overlayDiv.style.justifyContent  = 'left';
+                    }
+					else if(selectedImagePosition=='BOTTOM_CENTER'){ 
+                        overlayDiv.style.top = 'auto';
+                        overlayDiv.style.left = '50%';
+                        overlayDiv.style.bottom = 0;
+                        overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
+                        overlayDiv.style.alignItems = 'flex-end';
+                        overlayDiv.style.justifyContent  = 'center';
+                    }
+					else if(selectedImagePosition=='BOTTOM_RIGHT'){ 
+                        overlayDiv.style.top = 'auto';
+                        overlayDiv.style.left = 'auto';
+                        overlayDiv.style.bottom = 0;
+                        overlayDiv.style.right = 0; 
+                        overlayDiv.style.alignItems = 'flex-end';
+                        overlayDiv.style.justifyContent  = 'right';
+                    }
 
                     var overlayImg = document.createElement('img');
                     overlayImg.style.position = 'absolute';
@@ -450,10 +506,18 @@ const OverlaySettings = (props) => {
                             overlayDiv.style.overflow  = 'hidden';
                             //default css
                             
-                            if(topPadding!=''){ overlayDiv.style.paddingTop = topPadding+'px'; }
-                            if(rightPadding!=''){ overlayDiv.style.paddingRight = rightPadding+'px'; }
-                            if(bottomPadding!=''){ overlayDiv.style.paddingBottom = bottomPadding+'px'; }
-                            if(leftPadding!=''){ overlayDiv.style.paddingLeft = leftPadding+'px'; }
+                            if(topPadding!=''){ 
+                                overlayDiv.style.paddingTop = topPadding+'px'; 
+                            }
+                            if(rightPadding!=''){
+                                overlayDiv.style.paddingRight = rightPadding+'px'; 
+                            }
+                            if(bottomPadding!=''){
+                                overlayDiv.style.paddingBottom = bottomPadding+'px'; 
+                            }
+                            if(leftPadding!=''){
+                                overlayDiv.style.paddingLeft = leftPadding+'px'; 
+                            }
 
                             let rotate_css = '';
                             if(rotation!=''){
@@ -463,15 +527,71 @@ const OverlaySettings = (props) => {
         
                             if(opacity!=''){ overlayDiv.style.opacity = opacity; }
         
-                            if(selectedImagePosition=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
-                            else if(selectedImagePosition=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-                            else if(selectedImagePosition=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
-                            else if(selectedImagePosition=='MIDDLE_LEFT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-                            else if(selectedImagePosition=='MIDDLE_CENTER'){ overlayDiv.style.top = '50%';overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; }
-                            else if(selectedImagePosition=='MIDDLE_RIGHT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 'auto';overlayDiv.style.right = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
-                            else if(selectedImagePosition=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
-                            else if(selectedImagePosition=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
-                            else if(selectedImagePosition=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
+                            if(selectedImagePosition=='TOP_LEFT'){ 
+                                overlayDiv.style.top = 0;
+                                overlayDiv.style.left = 0;
+                                overlayDiv.style.alignItems = 'flex-start';
+                                overlayDiv.style.justifyContent  = 'left';
+                            }
+                            else if(selectedImagePosition=='TOP_CENTER'){ 
+                                overlayDiv.style.top = 0;
+                                overlayDiv.style.left = '50%';
+                                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
+                                overlayDiv.style.alignItems = 'flex-start';
+                                overlayDiv.style.justifyContent  = 'center';
+                            }
+                            else if(selectedImagePosition=='TOP_RIGHT'){ 
+                                overlayDiv.style.top = 0;
+                                overlayDiv.style.left = 'auto';
+                                overlayDiv.style.right = 0;
+                                overlayDiv.style.alignItems = 'flex-start';
+                                overlayDiv.style.justifyContent  = 'right';
+                            }
+                            else if(selectedImagePosition=='MIDDLE_LEFT'){ 
+                                overlayDiv.style.top = '50%';
+                                overlayDiv.style.left = 0;
+                                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
+                                overlayDiv.style.alignItems = 'center';
+                                overlayDiv.style.justifyContent  = 'flex-start';
+                            }
+                            else if(selectedImagePosition=='MIDDLE_CENTER'){ 
+                                overlayDiv.style.top = '50%';
+                                overlayDiv.style.left = '50%';
+                                overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; 
+                                overlayDiv.style.alignItems = 'center';
+                                overlayDiv.style.justifyContent  = 'center';
+                            }
+                            else if(selectedImagePosition=='MIDDLE_RIGHT'){ 
+                                overlayDiv.style.top = '50%';
+                                overlayDiv.style.left = 'auto';
+                                overlayDiv.style.right = 0;
+                                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
+                                overlayDiv.style.alignItems = 'center';
+                                overlayDiv.style.justifyContent  = 'right';
+                            }
+                            else if(selectedImagePosition=='BOTTOM_LEFT'){ 
+                                overlayDiv.style.top = 'auto';
+                                overlayDiv.style.left = 0;
+                                overlayDiv.style.bottom = 0;
+                                overlayDiv.style.alignItems = 'flex-end';
+                                overlayDiv.style.justifyContent  = 'left';
+                            }
+                            else if(selectedImagePosition=='BOTTOM_CENTER'){ 
+                                overlayDiv.style.top = 'auto';
+                                overlayDiv.style.left = '50%';
+                                overlayDiv.style.bottom = 0;
+                                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
+                                overlayDiv.style.alignItems = 'flex-end';
+                                overlayDiv.style.justifyContent  = 'center';
+                            }
+                            else if(selectedImagePosition=='BOTTOM_RIGHT'){ 
+                                overlayDiv.style.top = 'auto';
+                                overlayDiv.style.left = 'auto';
+                                overlayDiv.style.bottom = 0;
+                                overlayDiv.style.right = 0;
+                                overlayDiv.style.alignItems = 'flex-end';
+                                overlayDiv.style.justifyContent  = 'right';
+                            }
                             
                             var overlayImg = document.createElement('img');
                             overlayImg.style.position = 'absolute';

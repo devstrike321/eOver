@@ -302,7 +302,13 @@ const ImageOverlaySettings = (props) => {
                         <Select
                             label="Image position"
                             options={imagePositions}
-                            onChange={(value) => {setSelectedImagePosition(value)}}
+                            onChange={(value) => {
+                                setSelectedImagePosition(value);
+                                setTopPadding(0);
+                                setRightPadding(0);
+                                setBottomPadding(0);
+                                setLeftPadding(0);
+                            }}
                             value={selectedImagePosition}
                         />
                     </FormLayout.Group>
