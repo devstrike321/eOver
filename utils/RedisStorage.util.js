@@ -14,7 +14,6 @@ class RedisStore {
       }
     });
     this.client.on('error', (err) => console.log('Redis Client Error', err));
-    console.log(this.client);
     this.client.connect();
   }
 
