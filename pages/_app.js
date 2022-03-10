@@ -11,7 +11,7 @@ import { ApolloClient as RestApolloClient , InMemoryCache } from '@apollo/client
 import { RestLink } from "apollo-link-rest";
 import '../assets/css/app.css';
 import { useRouter } from "next/router";
-// import Script from "next/script";
+import Script from "next/script";
 
 function userLoggedInFetch(app) {
     const fetchFunction = authenticatedFetch(app);
@@ -106,7 +106,7 @@ class MyApp extends App {
                 forceRedirect: true,
             }}
         >
-            {/* <Script async="" src="https://embed.tawk.to/621f84b9a34c24564129141b/1ft5hsu0k" charset="UTF-8" crossorigin="*" /> */}
+            <Script async="" src="https://embed.tawk.to/621f84b9a34c24564129141b/1ft5hsu0k" charset="UTF-8" crossorigin="*" />
             <AppProvider i18n={translations}>                
                 <MyProvider Component={Component} {...pageProps} />
             </AppProvider>
