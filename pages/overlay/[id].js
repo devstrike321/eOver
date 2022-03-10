@@ -1,3 +1,4 @@
+import React from "react";
 import { Frame, Page, Spinner,Heading} from "@shopify/polaris";
 import OverlaySettings from './overlaySettings';
 import { Query } from 'react-apollo';
