@@ -249,9 +249,6 @@ const ImageOverlaySettings = (props) => {
     if (selectedGalleryImageURL) {
       overlayData.image_url = selectedGalleryImageURL;
     }
-
-    console.log(overlayData);
-
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });

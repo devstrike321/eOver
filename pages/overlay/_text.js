@@ -182,9 +182,6 @@ const TextOverlaySettings = (props) => {
       overlay_id:
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
-
-    console.log(overlayData);
-
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });
