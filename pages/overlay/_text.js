@@ -140,12 +140,12 @@ const TextOverlaySettings = (props) => {
   //#endregion
 
   //#region :- Text Overlay Insert/Update
-  const [
-    addEditOverlay,
-    addEditOverlayRes,
-  ] = useMutation(MutationShopify.SAVE_OVERLAY_SETTINGS(), {
-    client: props.restClient,
-  });
+  const [addEditOverlay, addEditOverlayRes] = useMutation(
+    MutationShopify.SAVE_OVERLAY_SETTINGS(),
+    {
+      client: props.restClient,
+    }
+  );
   const handleTextOverlay = async () => {
     const overlayData = {
       product_id: productId,
@@ -182,6 +182,9 @@ const TextOverlaySettings = (props) => {
       overlay_id:
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
+
+    console.log(overlayData);
+
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });

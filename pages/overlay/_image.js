@@ -207,12 +207,12 @@ const ImageOverlaySettings = (props) => {
   //#endregion
 
   //#region :- Image Overlay Insert/Update
-  const [
-    addEditOverlay,
-    addEditOverlayRes,
-  ] = useMutation(MutationShopify.SAVE_OVERLAY_SETTINGS(), {
-    client: props.restClient,
-  });
+  const [addEditOverlay, addEditOverlayRes] = useMutation(
+    MutationShopify.SAVE_OVERLAY_SETTINGS(),
+    {
+      client: props.restClient,
+    }
+  );
   const handleImageOverlay = async () => {
     const overlayData = {
       product_id: productId,
@@ -249,6 +249,9 @@ const ImageOverlaySettings = (props) => {
     if (selectedGalleryImageURL) {
       overlayData.image_url = selectedGalleryImageURL;
     }
+
+    console.log(overlayData);
+
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });
