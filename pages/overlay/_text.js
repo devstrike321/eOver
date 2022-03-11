@@ -183,8 +183,6 @@ const TextOverlaySettings = (props) => {
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
 
-    console.log(overlayData);
-
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });
@@ -500,6 +498,7 @@ const TextOverlaySettings = (props) => {
               <ButtonGroup spacing="loose">
                 <Button
                   loading={isLoading}
+                  disabled={addEditOverlayRes.loading ? true : false}
                   onClick={() => {
                     setIsLoading(true);
                     location.reload();

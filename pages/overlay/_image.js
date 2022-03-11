@@ -250,8 +250,6 @@ const ImageOverlaySettings = (props) => {
       overlayData.image_url = selectedGalleryImageURL;
     }
 
-    console.log(overlayData);
-
     const { data, errors } = await addEditOverlay({
       variables: { overlayData },
     });
@@ -537,6 +535,7 @@ const ImageOverlaySettings = (props) => {
               <ButtonGroup spacing="loose">
                 <Button
                   loading={isLoading}
+                  disabled={addEditOverlayRes.loading ? true : false}
                   onClick={() => {
                     setIsLoading(true);
                     location.reload();
