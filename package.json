@@ -60,6 +60,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^16.10.1",
     "react-inline-script": "^1.2.0",
+    "postcss": "^8.0.0",
     "redis": "^4.0.4",
     "shopify-jwt-auth-verify": "^2.0.1",
     "webpack": "^4.44.1"
