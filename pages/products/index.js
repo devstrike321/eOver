@@ -386,8 +386,8 @@ const ProductsIndex = (props) => {
                 <Card.Section>
                   <ProductList
                     {...props}
-                    isDisableOverlay={disableOverlay}
-                    isPlanExpired={isPlanExpired}
+                    isDisableOverlay={false}
+                    isPlanExpired={false}
                     setQueryToast={setQueryToast}
                   />
                 </Card.Section>
