@@ -13,6 +13,7 @@ const jwt = require("jsonwebtoken");
 import EasyOverlayApi from "../components/EasyOverlayApi";
 // import { RedisStorage } from "../utils";
 const { WebhooksController, shopifyPlanController } = require("../controllers");
+import { getSubscriptionUrl, getAppInstallation } from "./handlers";
 
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
@@ -57,14 +58,10 @@ app.prepare().then(async () => {
         const host = ctx.query.host;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
-        //#region :- Create and save token in DB
-        await EasyOverlayApi.post("/shop-auth/create", {
-          shop: shop,
-          token: accessToken,
-        });
-        //#endregion
+        const client = new Shopify.Clients.Graphql(shop, accessToken);
+        ctx.client = client;
 
-        //setup webhooks
+        //#region :- Setup Webhooks
         const webhook_topics = process.env.WEBHOOK_TOPICS.split(",");
         if (webhook_topics.length > 0) {
           for (let i = 0; i < webhook_topics.length; i++) {
@@ -95,12 +92,66 @@ app.prepare().then(async () => {
             }
           }
         }
+        //#endregion
 
-        // Redirect to app with shop parameter upon auth
-        ctx.redirect(`/?shop=${shop}&host=${host}`);
+        //#region :- Create and save token in DB
+        await EasyOverlayApi.post("/shop-auth/create", {
+          shop: shop,
+          token: accessToken,
+        });
+        //#endregion
+
+        const appInstall = await getAppInstallation(ctx);
+
+        if (appInstall?.status === "ACTIVE") {
+          ctx.redirect(`/?shop=${shop}&host=${host}`); // Redirect to dashboard
+        } else {
+          await getSubscriptionUrl(ctx); // redirect for subscription
+        }
       },
     })
   );
+
+  const appStatusCheck = async (ctx, shop) => {
+    const { data } = await EasyOverlayApi.get(`/shop-auth/${shop}`);
+
+    if (data) {
+      const accessToken = data.data.token;
+
+      // GraphQLClient takes in the shop url and the accessToken for that shop.
+      const client = new Shopify.Clients.Graphql(shop, accessToken);
+      ctx.client = client;
+      // get app install
+      const appInstall = await getAppInstallation(ctx);
+
+      if (appInstall?.status !== "ACTIVE") {
+        delete ACTIVE_SHOPIFY_SHOPS[shop];
+      }
+      return true;
+    } else {
+      delete ACTIVE_SHOPIFY_SHOPS[shop];
+      return true;
+    }
+  };
+
+  router.get("/charge_accepted", async (ctx, next) => {
+    const charge_id = ctx.query.charge_id;
+    const shop = ctx.query.shop;
+    const host = ctx.query.host;
+    const plan_slug = ctx.query.plan_slug;
+    if (charge_id) {
+      if (plan_slug) {
+        await EasyOverlayApi.post("/shop_charge_by_plan_slug", {
+          shop: shop,
+          charge_id: charge_id,
+          plan_slug: plan_slug,
+        });
+      }
+      ctx.redirect(`${process.env.HOST}/?shop=${shop}&host=${host}`);
+    } else {
+      ctx.redirect(`/auth?shop=${shop}`);
+    }
+  });
 
   const handleRequest = async (ctx) => {
     await handle(ctx.req, ctx.res);
@@ -175,6 +226,11 @@ app.prepare().then(async () => {
   router.get("/_next/webpack-hmr", handleRequest); // Webpack content is clear
   router.get("(.*)", async (ctx) => {
     const shop = ctx.query.shop;
+    // check for app charge
+    if (shop) {
+      await appStatusCheck(ctx, shop);
+    }
+
     // This shop hasn't been seen yet, go through OAuth to create a session
     if (ACTIVE_SHOPIFY_SHOPS[shop] === undefined) {
       if (ctx.url.includes("/get-shopify-plan")) {

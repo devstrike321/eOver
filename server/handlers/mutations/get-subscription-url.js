@@ -1,29 +1,27 @@
 import "isomorphic-fetch";
-import { gql } from "apollo-boost";
 
-export function RECURRING_CREATE(url) {
-  return gql`
+export function RECURRING_CREATE(
+  url,
+  isChargeTest,
+  trialDays,
+  planAmount,
+  planName
+) {
+  return `
     mutation {
       appSubscriptionCreate(
-          name: "Super Duper Plan"
+          name: "${planName}"
           returnUrl: "${url}"
-          test: true
+          test: ${isChargeTest}
+          trialDays:${Number(trialDays)}
           lineItems: [
-          {
-            plan: {
-              appUsagePricingDetails: {
-                  cappedAmount: { amount: 10, currencyCode: USD }
-                  terms: "$1 for 1000 emails"
+            {
+              plan: {
+                appRecurringPricingDetails: {
+                    price: { amount: ${planAmount}, currencyCode: USD }
+                }
               }
             }
-          }
-          {
-            plan: {
-              appRecurringPricingDetails: {
-                  price: { amount: 10, currencyCode: USD }
-              }
-            }
-          }
           ]
         ) {
             userErrors {
@@ -38,13 +36,24 @@ export function RECURRING_CREATE(url) {
     }`;
 }
 
-export const getSubscriptionUrl = async ctx => {
+export const getSubscriptionUrl = async (ctx) => {
   const { client } = ctx;
+  const shop = ctx.query.shop;
+  const host = ctx.query.host;
+
   const confirmationUrl = await client
-    .mutate({
-      mutation: RECURRING_CREATE(process.env.HOST)
+    .query({
+      data: RECURRING_CREATE(
+        `${process.env.HOST}/charge_accepted?shop=${shop}&host=${host}&plan_slug=${process.env.DEFAULT_PLAN_SLUG}`,
+        process.env.CHARGE_TEST,
+        process.env.CHARGE_TRIAL_DAYS,
+        process.env.CHARGE_AMOUNT,
+        process.env.CHARGE_PLAN_NAME
+      ),
     })
-    .then(response => response.data.appSubscriptionCreate.confirmationUrl);
+    .then(
+      (response) => response.body.data.appSubscriptionCreate.confirmationUrl
+    );
 
   return ctx.redirect(confirmationUrl);
 };

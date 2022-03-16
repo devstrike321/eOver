@@ -1,5 +1,6 @@
 import { createClient } from "./client";
 import { getOneTimeUrl } from "./mutations/get-one-time-url";
 import { getSubscriptionUrl } from "./mutations/get-subscription-url";
+import { getAppInstallation } from "./query/get-app-installation";
 
-export { createClient, getOneTimeUrl, getSubscriptionUrl };
+export { createClient, getOneTimeUrl, getSubscriptionUrl, getAppInstallation };
