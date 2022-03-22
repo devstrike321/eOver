@@ -63,8 +63,6 @@ app.prepare().then(async () => {
         const client = new Shopify.Clients.Graphql(shop, accessToken);
         ctx.client = client;
 
-        const objClient = new Shopify.Clients.Rest(shop, accessToken);
-
         //#region :- Register APP_UNINSTALLED Webhook
         const response = await Shopify.Webhooks.Registry.register({
           shop,
