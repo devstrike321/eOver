@@ -89,7 +89,7 @@ app.prepare().then(async () => {
         const appSubscriptionWebhookResp = await appSubscriptionWebhookReg(ctx);
 
         console.log(appSubscriptionWebhookResp);
-        console.log(JSON.stringify(appSubscriptionWebhookResp?.body?.data));
+        console.log(JSON.stringify(appSubscriptionWebhookResp));
 
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
@@ -138,7 +138,7 @@ app.prepare().then(async () => {
         topic: APP_SUBSCRIPTIONS_UPDATE
         webhookSubscription: {
           format: JSON,
-          callbackUrl: ${process.env.HOOKDECK_WEBHOOK_URL}
+          callbackUrl: "${process.env.HOOKDECK_WEBHOOK_URL}"
         }
       ) {
         userErrors {
