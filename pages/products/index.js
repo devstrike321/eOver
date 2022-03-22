@@ -59,15 +59,24 @@ const ProductsIndex = (props) => {
     ) {
       respData = respReasult?.data?.planProdInfo?.data;
       if (
-        Number(respData.shop_product_overlay_count) >=
+        Number(respData.shop_product_overlay_count) >
         Number(respData.shop_plan_access_products)
       ) {
         setChargeBanner([
           <div kye="0">
-            <Banner title="Plan expiration" status="critical">
+            <Banner
+              title="Plan expiration"
+              status="critical"
+              action={{
+                content: "Upgrade Plan",
+                onAction: () => {
+                  redirect.dispatch(Redirect.Action.APP, { path: "/plans" });
+                },
+              }}
+            >
               <p>
-                Your current plan is expired now. Please upgrade your plan to
-                continue with app.
+                You have reached the maximum product overlays for your plan.
+                Please upgrade to the Enterprise Plan for unlimited overlays
               </p>
             </Banner>
             <br />

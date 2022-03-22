@@ -57,15 +57,24 @@ const PlanIndex = (props) => {
     ) {
       respData = respReasult?.data?.planProdInfo?.data;
       if (
-        Number(respData.shop_product_overlay_count) >=
+        Number(respData.shop_product_overlay_count) >
         Number(respData.shop_plan_access_products)
       ) {
         setChargeBanner([
           <div key="0">
-            <Banner title="Plan expiration" status="critical">
+            <Banner
+              title="Plan expiration"
+              status="critical"
+              action={{
+                content: "Upgrade Plan",
+                onAction: () => {
+                  redirect.dispatch(Redirect.Action.APP, { path: "/plans" });
+                },
+              }}
+            >
               <p>
-                Your current plan is expired now. Please upgrade your plan to
-                continue with app.
+                You have reached the maximum product overlays for your plan.
+                Please upgrade to the Enterprise Plan for unlimited overlays
               </p>
             </Banner>
             <br />
@@ -319,12 +328,12 @@ const PlanIndex = (props) => {
   };
 
   // update plan info in db after create subscrption
-  const [
-    updateSubscription,
-    updateSubscriptionRes,
-  ] = useMutation(MutationShopify.UPDATE_SUBSCRIPTION_INFO_IN_DB(), {
-    client: props.restClient,
-  });
+  const [updateSubscription, updateSubscriptionRes] = useMutation(
+    MutationShopify.UPDATE_SUBSCRIPTION_INFO_IN_DB(),
+    {
+      client: props.restClient,
+    }
+  );
   const updateSubscriptionInfo = async (
     plan_id,
     charge_id,
