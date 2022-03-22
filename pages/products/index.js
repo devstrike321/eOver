@@ -59,7 +59,7 @@ const ProductsIndex = (props) => {
     ) {
       respData = respReasult?.data?.planProdInfo?.data;
       if (
-        Number(respData.shop_product_overlay_count) >
+        Number(respData.shop_product_overlay_count) >=
         Number(respData.shop_plan_access_products)
       ) {
         setChargeBanner([
