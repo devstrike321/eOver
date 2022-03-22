@@ -89,7 +89,7 @@ app.prepare().then(async () => {
         const appSubscriptionResp = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,
-          path: process.env.HOOKDECK_WEBHOOK_URL,
+          address: process.env.HOOKDECK_WEBHOOK_URL,
           topic: "APP_SUBSCRIPTIONS_UPDATE",
         });
         console.log(JSON.stringify(appSubscriptionResp));
