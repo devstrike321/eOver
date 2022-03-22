@@ -58,6 +58,8 @@ app.prepare().then(async () => {
         const host = ctx.query.host;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
+        console.log({ shop, accessToken, scope });
+
         const client = new Shopify.Clients.Graphql(shop, accessToken);
         ctx.client = client;
 
