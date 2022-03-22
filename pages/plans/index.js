@@ -62,16 +62,7 @@ const PlanIndex = (props) => {
       ) {
         setChargeBanner([
           <div key="0">
-            <Banner
-              title="Plan expiration"
-              status="critical"
-              action={{
-                content: "Upgrade Plan",
-                onAction: () => {
-                  redirect.dispatch(Redirect.Action.APP, { path: "/plans" });
-                },
-              }}
-            >
+            <Banner title="Plan expiration" status="critical">
               <p>
                 You have reached the maximum product overlays for your plan.
                 Please upgrade to the Enterprise Plan for unlimited overlays

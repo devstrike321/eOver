@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import createShopifyAuth from "@shopify/koa-shopify-auth";
 import { graphQLProxy } from "koa-shopify-graphql-proxy-cookieless";
-import Shopify from "@shopify/shopify-api";
+import Shopify, { DataType } from "@shopify/shopify-api";
 import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
@@ -61,35 +61,91 @@ app.prepare().then(async () => {
         const client = new Shopify.Clients.Graphql(shop, accessToken);
         ctx.client = client;
 
-        //#region :- Setup Webhooks
+        const objClient = new Shopify.Clients.Rest(shop, accessToken);
+
+        //#region :- Register APP_UNINSTALLED Webhook
+        const response = await Shopify.Webhooks.Registry.register({
+          shop,
+          accessToken,
+          path: "/webhooks",
+          topic: "APP_UNINSTALLED",
+          webhookHandler: async (topic, shop, body) =>
+            await WebhooksController.webhookManager(
+              ACTIVE_SHOPIFY_SHOPS,
+              ctx,
+              topic,
+              shop,
+              body,
+              accessToken
+            ),
+        });
+        if (!response.success) {
+          console.log(
+            `Failed to register APP_UNINSTALLED webhook: ${response.result}`
+          );
+        }
+        //#endregion
+
+        //#region - Setup Webhooks New Code - Hookdeck
+        const fetchWebhookRes = await objClient.get({ path: "webhooks" });
+        const webhookTopicsRes =
+          fetchWebhookRes?.body?.webhooks?.length > 0
+            ? fetchWebhookRes?.body?.webhooks
+            : [];
+
+        let webhookPromise = Array();
+        //let webhookDltPromise =  Array();
         const webhook_topics = process.env.WEBHOOK_TOPICS.split(",");
         if (webhook_topics.length > 0) {
           for (let i = 0; i < webhook_topics.length; i++) {
-            const response = await Shopify.Webhooks.Registry.register({
-              shop,
-              accessToken,
-              path: "/webhooks",
-              topic: webhook_topics[i],
-              webhookHandler: async (topic, shop, body) => {
-                await WebhooksController.webhookManager(
-                  ACTIVE_SHOPIFY_SHOPS,
-                  ctx,
-                  topic,
-                  shop,
-                  body,
-                  accessToken
+            if (webhookTopicsRes?.length > 0) {
+              //const isWebhookExists = webhookTopicsRes.filter(web => web.topic === webhook_topics[i]);
+
+              if (
+                !webhookTopicsRes.some((web) => web.topic === webhook_topics[i])
+              ) {
+                webhookPromise.push(
+                  objClient.post({
+                    path: "/webhooks",
+                    data: {
+                      webhook: {
+                        topic: webhook_topics[i],
+                        address: process.env.HOOKDECK_WEBHOOK_URL,
+                        format: "json",
+                      },
+                    },
+                    type: DataType.JSON,
+                  })
                 );
-              },
-            });
-            if (!response.success) {
-              console.log(
-                `Failed to register ${webhook_topics[i]} webhook: ${response.result}`
-              );
-            } else {
-              console.log(
-                `Registered ${webhook_topics[i]} webhook successfully`
-              );
+              }
+
+              /*if (isWebhookExists[0]?.id) {
+                        // const webhookId = isWebhookExists[0]?.id;
+                        // webhookDltPromise.push(objClient.delete({ 
+                        //     path: `webhooks/${webhookId}`
+                        // }));
+                    }else{
+                        webhookPromise.push(objClient.post({
+                            path: '/webhooks',
+                            data: {
+                                "webhook": {
+                                    "topic": webhook_topics[i],
+                                    "address": process.env.HOOKDECK_WEBHOOK_URL,
+                                    "format": "json"
+                                }
+                            },
+                            type: DataType.JSON,
+                        }));
+                    }*/
             }
+          }
+
+          /*if(webhookDltPromise.length > 0){
+                await Promise.all(webhookDltPromise);
+            }*/
+
+          if (webhookPromise.length > 0) {
+            await Promise.all(webhookPromise);
           }
         }
         //#endregion
