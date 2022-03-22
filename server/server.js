@@ -55,6 +55,9 @@ app.prepare().then(async () => {
       async afterAuth(ctx) {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
+
+        console.log({ shop, accessToken, scope });
+
         const host = ctx.query.host;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
@@ -149,6 +152,7 @@ app.prepare().then(async () => {
     const appSubscriptionWebhookResp = await client
       .query({ data: GqlQuery })
       .then((response) => {
+        console.log(response?.body?.data);
         return response;
       });
 
