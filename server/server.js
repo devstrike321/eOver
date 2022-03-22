@@ -88,67 +88,16 @@ app.prepare().then(async () => {
         }
         //#endregion
 
-        //#region - Setup Webhooks New Code - Hookdeck
-        const fetchWebhookRes = await objClient.get({ path: "webhooks" });
-        const webhookTopicsRes =
-          fetchWebhookRes?.body?.webhooks?.length > 0
-            ? fetchWebhookRes?.body?.webhooks
-            : [];
-
-        let webhookPromise = Array();
-        //let webhookDltPromise =  Array();
-        const webhook_topics = process.env.WEBHOOK_TOPICS.split(",");
-        if (webhook_topics.length > 0) {
-          for (let i = 0; i < webhook_topics.length; i++) {
-            if (webhookTopicsRes?.length > 0) {
-              //const isWebhookExists = webhookTopicsRes.filter(web => web.topic === webhook_topics[i]);
-
-              if (
-                !webhookTopicsRes.some((web) => web.topic === webhook_topics[i])
-              ) {
-                webhookPromise.push(
-                  objClient.post({
-                    path: "/webhooks",
-                    data: {
-                      webhook: {
-                        topic: webhook_topics[i],
-                        address: process.env.HOOKDECK_WEBHOOK_URL,
-                        format: "json",
-                      },
-                    },
-                    type: DataType.JSON,
-                  })
-                );
-              }
-
-              /*if (isWebhookExists[0]?.id) {
-                        // const webhookId = isWebhookExists[0]?.id;
-                        // webhookDltPromise.push(objClient.delete({ 
-                        //     path: `webhooks/${webhookId}`
-                        // }));
-                    }else{
-                        webhookPromise.push(objClient.post({
-                            path: '/webhooks',
-                            data: {
-                                "webhook": {
-                                    "topic": webhook_topics[i],
-                                    "address": process.env.HOOKDECK_WEBHOOK_URL,
-                                    "format": "json"
-                                }
-                            },
-                            type: DataType.JSON,
-                        }));
-                    }*/
-            }
-          }
-
-          /*if(webhookDltPromise.length > 0){
-                await Promise.all(webhookDltPromise);
-            }*/
-
-          if (webhookPromise.length > 0) {
-            await Promise.all(webhookPromise);
-          }
+        const appSubscriptionResp = await Shopify.Webhooks.Registry.register({
+          shop,
+          accessToken,
+          path: process.env.HOOKDECK_WEBHOOK_URL,
+          topic: "APP_SUBSCRIPTIONS_UPDATE",
+        });
+        if (!appSubscriptionResp.success) {
+          console.log(
+            `Failed to register APP_SUBSCRIPTIONS_UPDATE webhook: ${appSubscriptionResp.result}`
+          );
         }
         //#endregion
 
