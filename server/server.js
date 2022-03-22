@@ -92,6 +92,7 @@ app.prepare().then(async () => {
           path: process.env.HOOKDECK_WEBHOOK_URL,
           topic: "APP_SUBSCRIPTIONS_UPDATE",
         });
+        console.log(JSON.stringify(appSubscriptionResp));
         if (!appSubscriptionResp.success) {
           console.log(
             `Failed to register APP_SUBSCRIPTIONS_UPDATE webhook: ${appSubscriptionResp.result}`
