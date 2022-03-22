@@ -58,8 +58,6 @@ app.prepare().then(async () => {
         const host = ctx.query.host;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
-        console.log({ shop, accessToken, scope });
-
         const client = new Shopify.Clients.Graphql(shop, accessToken);
         ctx.client = client;
 
@@ -86,10 +84,7 @@ app.prepare().then(async () => {
         }
         //#endregion
 
-        const appSubscriptionWebhookResp = await appSubscriptionWebhookReg(ctx);
-
-        console.log(appSubscriptionWebhookResp);
-        console.log(JSON.stringify(appSubscriptionWebhookResp));
+        await appSubscriptionWebhookReg(ctx);
 
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
