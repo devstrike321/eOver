@@ -86,19 +86,9 @@ app.prepare().then(async () => {
         }
         //#endregion
 
-        const appSubscriptionResp = await Shopify.Webhooks.Registry.register({
-          shop,
-          accessToken,
-          address: process.env.HOOKDECK_WEBHOOK_URL,
-          topic: "APP_SUBSCRIPTIONS_UPDATE",
-        });
-        console.log(JSON.stringify(appSubscriptionResp));
-        if (!appSubscriptionResp.success) {
-          console.log(
-            `Failed to register APP_SUBSCRIPTIONS_UPDATE webhook: ${appSubscriptionResp.result}`
-          );
-        }
-        //#endregion
+        const appSubscriptionWebhookResp = await appSubscriptionWebhookReg(ctx);
+
+        console.log(appSubscriptionWebhookResp);
 
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
@@ -138,6 +128,35 @@ app.prepare().then(async () => {
       delete ACTIVE_SHOPIFY_SHOPS[shop];
       return true;
     }
+  };
+
+  const appSubscriptionWebhookReg = async (ctx) => {
+    const { client } = ctx;
+    const GqlQuery = `mutation {
+      webhookSubscriptionCreate(
+        topic: APP_SUBSCRIPTIONS_UPDATE
+        webhookSubscription: {
+          format: JSON,
+          callbackUrl: ${process.env.HOOKDECK_WEBHOOK_URL}
+        }
+      ) {
+        userErrors {
+          field
+          message
+        }
+        webhookSubscription {
+          id
+        }
+      }
+    }`;
+
+    const appSubscriptionWebhookResp = await client
+      .query({ data: GqlQuery })
+      .then((response) => {
+        return response;
+      });
+
+    return appSubscriptionWebhookResp;
   };
 
   router.get("/charge_accepted", async (ctx, next) => {
