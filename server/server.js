@@ -89,6 +89,8 @@ app.prepare().then(async () => {
 
         await appSubscriptionWebhookReg(ctx);
 
+        await fetchAllWbResp(ctx);
+
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
           shop: shop,
@@ -157,6 +159,42 @@ app.prepare().then(async () => {
       });
 
     return appSubscriptionWebhookResp;
+  };
+
+  const fetchAllWbResp = async (ctx) => {
+    const { client } = ctx;
+    const GqlQuery = `mutation {
+      webhookSubscriptions(first: 10) {
+        edges {
+          node {
+            id
+            topic
+            endpoint {
+              __typename
+              ... on WebhookHttpEndpoint {
+                callbackUrl
+              }
+              ... on WebhookEventBridgeEndpoint {
+                arn
+              }
+              ... on WebhookPubSubEndpoint {
+                pubSubProject
+                pubSubTopic
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    const fetchAllWbRespInfo = await client
+      .query({ data: GqlQuery })
+      .then((response) => {
+        console.log(response?.body?.data);
+        return response;
+      });
+
+    return fetchAllWbRespInfo;
   };
 
   router.get("/charge_accepted", async (ctx, next) => {
