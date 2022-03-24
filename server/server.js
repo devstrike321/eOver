@@ -89,9 +89,9 @@ app.prepare().then(async () => {
 
         await appSubscriptionWebhookReg(ctx);
 
-        await deleteSubscriptionWebhook(ctx);
+        // await deleteSubscriptionWebhook(ctx);
 
-        // await fetchAllWbResp(ctx);
+        await fetchAllWbResp(ctx);
 
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
