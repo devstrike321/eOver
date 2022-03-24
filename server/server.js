@@ -163,7 +163,7 @@ app.prepare().then(async () => {
 
   const fetchAllWbResp = async (ctx) => {
     const { client } = ctx;
-    const GqlQuery = `mutation {
+    const GqlQuery = `{
       webhookSubscriptions(first: 10) {
         edges {
           node {
