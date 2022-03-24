@@ -89,7 +89,9 @@ app.prepare().then(async () => {
 
         await appSubscriptionWebhookReg(ctx);
 
-        await fetchAllWbResp(ctx);
+        await deleteSubscriptionWebhook(ctx);
+
+        // await fetchAllWbResp(ctx);
 
         //#region :- Create and save token in DB
         await EasyOverlayApi.post("/shop-auth/create", {
@@ -196,6 +198,30 @@ app.prepare().then(async () => {
       });
 
     return fetchAllWbRespInfo;
+  };
+
+  const deleteSubscriptionWebhook = async (ctx) => {
+    const { client } = ctx;
+    const GqlQuery = `mutation {
+      webhookSubscriptionDelete(
+        id: "gid://shopify/WebhookSubscription/1131891228892"
+      ){
+        userErrors {
+          field
+          message
+        }
+        deletedWebhookSubscriptionId
+      }
+    }`;
+
+    const deleteSubscriptionWebhookResp = await client
+      .query({ data: GqlQuery })
+      .then((response) => {
+        console.log(JSON.stringify(response?.body?.data));
+        return response;
+      });
+
+    return deleteSubscriptionWebhookResp;
   };
 
   router.get("/charge_accepted", async (ctx, next) => {
