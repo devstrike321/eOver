@@ -154,7 +154,7 @@ app.prepare().then(async () => {
     const appSubscriptionWebhookResp = await client
       .query({ data: GqlQuery })
       .then((response) => {
-        console.log(response?.body?.data);
+        console.log(JSON.stringify(response?.body?.data));
         return response;
       });
 
@@ -190,7 +190,8 @@ app.prepare().then(async () => {
     const fetchAllWbRespInfo = await client
       .query({ data: GqlQuery })
       .then((response) => {
-        console.log(response?.body?.data);
+        console.log(response);
+        console.log(JSON.stringify(response));
         return response;
       });
 
