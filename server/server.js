@@ -316,6 +316,12 @@ app.prepare().then(async () => {
   router.get("/_next/webpack-hmr", handleRequest); // Webpack content is clear
   router.get("(.*)", async (ctx) => {
     const shop = ctx.query.shop;
+
+    ctx.set(
+      "Content-Security-Policy",
+      `frame-ancestors https://${shop} https://admin.shopify.com;`
+    );
+
     // check for app charge
     if (shop) {
       await appStatusCheck(ctx, shop);
