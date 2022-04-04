@@ -102,6 +102,8 @@ app.prepare().then(async () => {
 
         const appInstall = await getAppInstallation(ctx);
 
+        console.log(ACTIVE_SHOPIFY_SHOPS);
+
         if (appInstall?.status === "ACTIVE") {
           ctx.redirect(`/?shop=${shop}&host=${host}`); // Redirect to dashboard
         } else {
