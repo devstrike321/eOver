@@ -102,8 +102,6 @@ app.prepare().then(async () => {
 
         const appInstall = await getAppInstallation(ctx);
 
-        console.log(ACTIVE_SHOPIFY_SHOPS);
-
         if (appInstall?.status === "ACTIVE") {
           ctx.redirect(`/?shop=${shop}&host=${host}`); // Redirect to dashboard
         } else {
@@ -116,7 +114,9 @@ app.prepare().then(async () => {
   const appStatusCheck = async (ctx, shop) => {
     const { data } = await EasyOverlayApi.get(`/shop-auth/${shop}`);
 
-    if (data) {
+    console.log(data);
+    console.log(data.success);
+    if (Number(data.code) == 200) {
       const accessToken = data.data.token;
 
       // GraphQLClient takes in the shop url and the accessToken for that shop.
