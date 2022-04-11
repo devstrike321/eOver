@@ -114,8 +114,6 @@ app.prepare().then(async () => {
   const appStatusCheck = async (ctx, shop) => {
     const { data } = await EasyOverlayApi.get(`/shop-auth/${shop}`);
 
-    console.log(data);
-    console.log(data.success);
     if (Number(data.code) == 200) {
       const accessToken = data.data.token;
 
@@ -194,7 +192,6 @@ app.prepare().then(async () => {
     const fetchAllWbRespInfo = await client
       .query({ data: GqlQuery })
       .then((response) => {
-        console.log(response);
         console.log(JSON.stringify(response));
         return response;
       });
@@ -219,7 +216,7 @@ app.prepare().then(async () => {
     const deleteSubscriptionWebhookResp = await client
       .query({ data: GqlQuery })
       .then((response) => {
-        console.log(JSON.stringify(response?.body?.data));
+        console.log(JSON.stringify(response));
         return response;
       });
 
