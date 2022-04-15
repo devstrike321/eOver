@@ -32,12 +32,12 @@ const Index = (props) => {
   const [pageTitle, setPageTitle] = useState("");
   const contentStatus = appEnable ? "Disable" : "Enable";
   const textStatus = appEnable ? "Enabled" : "Disabled";
-  const [
-    changeAppStatus,
-    changeAppStatusRes,
-  ] = useMutation(MutationShopify.CHANGE_APP_STATUS(), {
-    client: props.restClient,
-  });
+  const [changeAppStatus, changeAppStatusRes] = useMutation(
+    MutationShopify.CHANGE_APP_STATUS(),
+    {
+      client: props.restClient,
+    }
+  );
   const handleToggle = async (value) => {
     setAppEnable((value) => !value);
     const changeAppStatusData = {
@@ -122,7 +122,10 @@ const Index = (props) => {
             if (error) return <div>{error.message}</div>;
             return (
               <Layout>
-                <Layout.AnnotatedSection title="Step - 1" description="">
+                <Layout.AnnotatedSection
+                  title="Step - 1 Enable The App"
+                  description=""
+                >
                   <Card title="" sectioned>
                     <Stack vertical={true}>
                       <p>
@@ -164,25 +167,43 @@ const Index = (props) => {
                   </Card>
                 </Layout.AnnotatedSection>
 
-                <Layout.AnnotatedSection title="Step - 2" description="">
+                <Layout.AnnotatedSection
+                  title="Step - 2 Add Code to <IMG> Tags"
+                  description=""
+                >
                   <Card title="" sectioned>
                     <Stack vertical={true}>
                       <p>
+                        1. Go to Theme {">>"} Actions{">>"} Edit Code then Open
+                        collection.liquid and find {"<img>"} tag.{" "}
+                      </p>
+
+                      <p>
+                        2. If there is not a class= attribute in your {"<img>"}{" "}
+                        tag, simply add the code snippet below inside your{" "}
+                        {"<img>"} tag: class="easyOverlayImage"
+                        data-product_id="{"{{product.id}}"}"
+                      </p>
+
+                      {/* <p>
                         Now go to theme edit-code and find {"<"}img{">"}{" "}
                         elements in collection, product and search page and add
                         class “<b>easyOverlayImage</b>” and attribute{" "}
                         <b>data-product_id="{'{{product.id}}"'}</b> or{" "}
                         <b>data-product_id="{'{{item.id}}"'}</b> in that tag. It
                         depends on your theme.
-                      </p>
+                      </p> */}
 
                       <TextStyle variation="strong">
-                        Before configuration
+                        Example Before Code:
                       </TextStyle>
-
+                      <TextStyle variation="code">
+                        {"<"}img src="{"{{"}featured_image {"|"}{" "}
+                        product_img_url: '1024x1024' {"}}"}"{"/>"}
+                      </TextStyle>
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/before.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/1.png"
                         }
                         external
                       >
@@ -190,19 +211,22 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/before.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/1.png"
                           className="eo_sg_step_2_before_img"
                         />
                       </Link>
 
                       <TextStyle variation="strong">
-                        After configuration. Adding class name and data
-                        attribute
+                        Example After Code:
                       </TextStyle>
-
+                      <TextStyle variation="code">
+                        {"<"}img class="easyOverlayImage" data-product_id="
+                        {"{{"}product.id{"}}"}" src="{"{{"}featured_image {"|"}{" "}
+                        product_img_url: '1024x1024' {"}}"}"{"/>"}
+                      </TextStyle>
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/after.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/2.png"
                         }
                         external
                       >
@@ -210,10 +234,90 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/after.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/2.png"
                           className="eo_sg_step_2_after_img"
                         />
                       </Link>
+
+                      <p>
+                        3. If your {"<img>"} already has a class defined, simply
+                        add: easyOverlayImage inside the existing class
+                        attribute and add: data-product_id="{"{{product.id}}"}"
+                        before the close of the {"<img>"} tag.
+                      </p>
+
+                      <TextStyle variation="strong">
+                        Example Before Code:
+                      </TextStyle>
+                      <TextStyle variation="code">
+                        {"<"}img class="ExistingClass" src="{"{{"}featured_image{" "}
+                        {"|"} product_img_url: '1024x1024' {"}}"}"
+                        data-zoom-image="{"{{"} featured_image |
+                        product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
+                        product.title | escape {"}}"}"{"/>"}
+                      </TextStyle>
+
+                      <Link
+                        url={
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/3.png"
+                        }
+                        external
+                      >
+                        <img
+                          alt="step-2"
+                          width="100%"
+                          height="100%"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/3.png"
+                          className="eo_sg_step_3_before_img"
+                        />
+                      </Link>
+
+                      <TextStyle variation="strong">
+                        Example After Code:
+                      </TextStyle>
+
+                      <TextStyle variation="code">
+                        {"<"}img class="ExistingClass easyOverlayImage"
+                        data-product_id="{"{{"}product.id{"}}"}" src="{"{{"}
+                        featured_image {"|"} product_img_url: '1024x1024' {"}}"}
+                        " data-zoom-image="{"{{"} featured_image |
+                        product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
+                        product.title | escape {"}}"}"{"/>"}
+                      </TextStyle>
+
+                      <Link
+                        url={
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/4.png"
+                        }
+                        external
+                      >
+                        <img
+                          alt="step-2"
+                          width="100%"
+                          height="100%"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/4.png"
+                          className="eo_sg_step_4_after_img"
+                        />
+                      </Link>
+
+                      <p>
+                        4. Follow the same steps on the product.liquid and
+                        search.liquid pages
+                      </p>
+
+                      <p>
+                        <TextStyle variation="strong">Need Help?</TextStyle> If
+                        you have questions or need help, please reach out to us
+                        through the chat icon on this page or email:{" "}
+                        <a
+                          href="mailto:dan@summitwebconsultants.com"
+                          target="_blank"
+                        >
+                          dan@summitwebconsultants.com
+                        </a>
+                        . We are here to help you and will be happy to install
+                        the code for you.
+                      </p>
                     </Stack>
                   </Card>
                 </Layout.AnnotatedSection>
