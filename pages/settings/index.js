@@ -175,7 +175,8 @@ const Index = (props) => {
                     <Stack vertical={true}>
                       <p>
                         1. Go to Theme {">>"} Actions{">>"} Edit Code then Open
-                        collection.liquid and find {"<img>"} tag.{" "}
+                        collection.liquid {">>"} product-item.liquid and find{" "}
+                        {"<img>"} tag.{" "}
                       </p>
 
                       <p>
