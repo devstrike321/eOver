@@ -175,8 +175,7 @@ const Index = (props) => {
                     <Stack vertical={true}>
                       <p>
                         1. Go to Theme {">>"} Actions{">>"} Edit Code then Open
-                        collection.liquid {">>"} product-item.liquid and find{" "}
-                        {"<img>"} tag.{" "}
+                        product.liquid and find {"<img>"} tag.{" "}
                       </p>
 
                       <p>
@@ -204,7 +203,7 @@ const Index = (props) => {
                       </TextStyle>
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/1.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
                         }
                         external
                       >
@@ -212,7 +211,7 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/1.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
                           className="eo_sg_step_2_before_img"
                         />
                       </Link>
@@ -227,7 +226,7 @@ const Index = (props) => {
                       </TextStyle>
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/2.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
                         }
                         external
                       >
@@ -235,7 +234,7 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/2.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
                           className="eo_sg_step_2_after_img"
                         />
                       </Link>
@@ -260,7 +259,7 @@ const Index = (props) => {
 
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/3.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
                         }
                         external
                       >
@@ -268,7 +267,7 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/3.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
                           className="eo_sg_step_3_before_img"
                         />
                       </Link>
@@ -288,7 +287,7 @@ const Index = (props) => {
 
                       <Link
                         url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/4.png"
+                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
                         }
                         external
                       >
@@ -296,13 +295,13 @@ const Index = (props) => {
                           alt="step-2"
                           width="100%"
                           height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/4.png"
+                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
                           className="eo_sg_step_4_after_img"
                         />
                       </Link>
 
                       <p>
-                        4. Follow the same steps on the product.liquid and
+                        4. Follow the same steps on the collection.liquid and
                         search.liquid pages
                       </p>
 
