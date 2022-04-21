@@ -129,12 +129,10 @@ const Index = (props) => {
                   <Card title="" sectioned>
                     <Stack vertical={true}>
                       <p>
-                        After installing and setup overlay in products, now we
-                        are going to enable app for frontend. First go to your
-                        store-admin and Click on <b>Online Store</b> {">"} Click
-                        on <b>Customize</b> {">"} Click on <b>Theme setting</b>{" "}
-                        {">"} Click on <b>App embeds</b> {">"} Find “Easy
-                        Overlay Settings” and click on Enable / Disable
+                        First, enable the app. In your store-admin, Click on{" "}
+                        <b>Online Store</b> {">"} <b>Customize</b> {">"}{" "}
+                        <b>Theme setting</b> {">"} <b>App embeds</b> {">"} Find
+                        “Easy Overlay Settings” and click on Enable / Disable.
                       </p>
 
                       <Banner status="info">
@@ -174,10 +172,10 @@ const Index = (props) => {
                   <Card title="" sectioned>
                     <Stack vertical={true}>
                       <p>
-                        1. Go to Theme {">>"} Actions{">>"} Edit Code then Open
-                        product.liquid and find {"<img>"} tag.{" "}
+                        1. Click on <b>Theme</b> {">"} <b>Actions</b>
+                        {">"} <b>Edit Code</b> then Open product.liquid and find{" "}
+                        {"<img>"} tag.{" "}
                       </p>
-
                       <p>
                         2. If there is not a class= attribute in your {"<img>"}{" "}
                         tag, simply add the code snippet below inside your{" "}
@@ -220,9 +218,13 @@ const Index = (props) => {
                         Example After Code:
                       </TextStyle>
                       <TextStyle variation="code">
-                        {"<"}img class="easyOverlayImage" data-product_id="
-                        {"{{"}product.id{"}}"}" src="{"{{"}featured_image {"|"}{" "}
-                        product_img_url: '1024x1024' {"}}"}"{"/>"}
+                        {"<"}img{" "}
+                        <b>
+                          class="easyOverlayImage" data-product_id="
+                          {"{{"}product.id{"}}"}"
+                        </b>{" "}
+                        src="{"{{"}featured_image {"|"} product_img_url:
+                        '1024x1024' {"}}"}"{"/>"}
                       </TextStyle>
                       <Link
                         url={
@@ -277,8 +279,11 @@ const Index = (props) => {
                       </TextStyle>
 
                       <TextStyle variation="code">
-                        {"<"}img class="ExistingClass easyOverlayImage"
-                        data-product_id="{"{{"}product.id{"}}"}" src="{"{{"}
+                        {"<"}img class="ExistingClass <b>easyOverlayImage"</b>
+                        <b>
+                          data-product_id="{"{{"}product.id{"}}"}"
+                        </b>{" "}
+                        src="{"{{"}
                         featured_image {"|"} product_img_url: '1024x1024' {"}}"}
                         " data-zoom-image="{"{{"} featured_image |
                         product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
