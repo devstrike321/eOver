@@ -279,7 +279,7 @@ const Index = (props) => {
                       </TextStyle>
 
                       <TextStyle variation="code">
-                        {"<"}img class="ExistingClass <b>easyOverlayImage"</b>
+                        {"<"}img class="ExistingClass <b>easyOverlayImage</b>"
                         <b>
                           data-product_id="{"{{"}product.id{"}}"}"
                         </b>{" "}
