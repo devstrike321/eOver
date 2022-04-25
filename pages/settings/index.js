@@ -15,6 +15,7 @@ import {
   Tooltip,
   Icon,
   Banner,
+  Tabs,
 } from "@shopify/polaris";
 import { Query, useMutation } from "react-apollo";
 import { QueryRootShopify, MutationShopify } from "../../graphql";
@@ -32,6 +33,8 @@ const Index = (props) => {
   const [pageTitle, setPageTitle] = useState("");
   const contentStatus = appEnable ? "Disable" : "Enable";
   const textStatus = appEnable ? "Enabled" : "Disabled";
+  const [selectedTab, setSelectedTab] = useState(0);
+
   const [changeAppStatus, changeAppStatusRes] = useMutation(
     MutationShopify.CHANGE_APP_STATUS(),
     {
@@ -82,6 +85,19 @@ const Index = (props) => {
       />,
     ]);
   };
+
+  const tabs = [
+    {
+      id: "vintage-shopify-theme",
+      content: "Shopify Theme 1.0",
+      panelID: "vintage-shopify-theme",
+    },
+    {
+      id: "latest-shopify-theme",
+      content: "Shopify Theme 2.0",
+      panelID: "latest-shopify-theme",
+    },
+  ];
   return (
     <Frame>
       <Page title={pageTitle}>
@@ -170,160 +186,352 @@ const Index = (props) => {
                   description=""
                 >
                   <Card title="" sectioned>
-                    <Stack vertical={true}>
-                      <p>
-                        1. Click on <b>Theme</b> {">"} <b>Actions</b>
-                        {">"} <b>Edit Code</b> then Open product.liquid and find{" "}
-                        {"<img>"} tag.{" "}
-                      </p>
-                      <p>
-                        2. If there is not a class= attribute in your {"<img>"}{" "}
-                        tag, simply add the code snippet below inside your{" "}
-                        {"<img>"} tag: class="easyOverlayImage"
-                        data-product_id="{"{{product.id}}"}"
-                      </p>
+                    <Tabs
+                      tabs={tabs}
+                      selected={selectedTab}
+                      onSelect={(value) => setSelectedTab(value)}
+                      fitted
+                    >
+                      <Card.Section>
+                        {selectedTab == 0 ? (
+                          <Stack vertical={true}>
+                            <p>
+                              1. Click on <b>Theme</b> {">"} <b>Actions</b>
+                              {">"} <b>Edit Code</b> then Open product.liquid
+                              and find {"<img>"} tag.{" "}
+                            </p>
+                            <p>
+                              2. If there is not a class= attribute in your{" "}
+                              {"<img>"} tag, simply add the code snippet below
+                              inside your {"<img>"} tag:
+                              class="easyOverlayImage" data-product_id="
+                              {"{{product.id}}"}"
+                            </p>
 
-                      {/* <p>
-                        Now go to theme edit-code and find {"<"}img{">"}{" "}
-                        elements in collection, product and search page and add
-                        class “<b>easyOverlayImage</b>” and attribute{" "}
-                        <b>data-product_id="{'{{product.id}}"'}</b> or{" "}
-                        <b>data-product_id="{'{{item.id}}"'}</b> in that tag. It
-                        depends on your theme.
-                      </p> */}
+                            {/* <p>
+                              Now go to theme edit-code and find {"<"}img{">"}{" "}
+                              elements in collection, product and search page and add
+                              class “<b>easyOverlayImage</b>” and attribute{" "}
+                              <b>data-product_id="{'{{product.id}}"'}</b> or{" "}
+                              <b>data-product_id="{'{{item.id}}"'}</b> in that tag. It
+                              depends on your theme.
+                            </p> */}
 
-                      <TextStyle variation="strong">
-                        Example Before Code:
-                      </TextStyle>
-                      <TextStyle variation="code">
-                        {"<"}img src="{"{{"}featured_image {"|"}{" "}
-                        product_img_url: '1024x1024' {"}}"}"{"/>"}
-                      </TextStyle>
-                      <Link
-                        url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
-                        }
-                        external
-                      >
-                        <img
-                          alt="step-2"
-                          width="100%"
-                          height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
-                          className="eo_sg_step_2_before_img"
-                        />
-                      </Link>
+                            <TextStyle variation="strong">
+                              Example Before Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img src="{"{{"}featured_image {"|"}{" "}
+                              product_img_url: '1024x1024' {"}}"}"{"/>"}
+                            </TextStyle>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_1.png"
+                                className="eo_sg_step_2_before_img"
+                              />
+                            </Link>
 
-                      <TextStyle variation="strong">
-                        Example After Code:
-                      </TextStyle>
-                      <TextStyle variation="code">
-                        {"<"}img{" "}
-                        <b>
-                          class="easyOverlayImage" data-product_id="
-                          {"{{"}product.id{"}}"}"
-                        </b>{" "}
-                        src="{"{{"}featured_image {"|"} product_img_url:
-                        '1024x1024' {"}}"}"{"/>"}
-                      </TextStyle>
-                      <Link
-                        url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
-                        }
-                        external
-                      >
-                        <img
-                          alt="step-2"
-                          width="100%"
-                          height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
-                          className="eo_sg_step_2_after_img"
-                        />
-                      </Link>
+                            <TextStyle variation="strong">
+                              Example After Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img{" "}
+                              <b>
+                                class="easyOverlayImage" data-product_id="
+                                {"{{"}product.id{"}}"}"
+                              </b>{" "}
+                              src="{"{{"}featured_image {"|"} product_img_url:
+                              '1024x1024' {"}}"}"{"/>"}
+                            </TextStyle>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_2.png"
+                                className="eo_sg_step_2_after_img"
+                              />
+                            </Link>
 
-                      <p>
-                        3. If your {"<img>"} already has a class defined, simply
-                        add: easyOverlayImage inside the existing class
-                        attribute and add: data-product_id="{"{{product.id}}"}"
-                        before the close of the {"<img>"} tag.
-                      </p>
+                            <p>
+                              3. If your {"<img>"} already has a class defined,
+                              simply add: easyOverlayImage inside the existing
+                              class attribute and add: data-product_id="
+                              {"{{product.id}}"}" before the close of the{" "}
+                              {"<img>"} tag.
+                            </p>
 
-                      <TextStyle variation="strong">
-                        Example Before Code:
-                      </TextStyle>
-                      <TextStyle variation="code">
-                        {"<"}img class="ExistingClass" src="{"{{"}featured_image{" "}
-                        {"|"} product_img_url: '1024x1024' {"}}"}"
-                        data-zoom-image="{"{{"} featured_image |
-                        product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
-                        product.title | escape {"}}"}"{"/>"}
-                      </TextStyle>
+                            <TextStyle variation="strong">
+                              Example Before Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img class="ExistingClass" src="{"{{"}
+                              featured_image {"|"} product_img_url: '1024x1024'{" "}
+                              {"}}"}" data-zoom-image="{"{{"} featured_image |
+                              product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
+                              product.title | escape {"}}"}"{"/>"}
+                            </TextStyle>
 
-                      <Link
-                        url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
-                        }
-                        external
-                      >
-                        <img
-                          alt="step-2"
-                          width="100%"
-                          height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
-                          className="eo_sg_step_3_before_img"
-                        />
-                      </Link>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_3.png"
+                                className="eo_sg_step_3_before_img"
+                              />
+                            </Link>
 
-                      <TextStyle variation="strong">
-                        Example After Code:
-                      </TextStyle>
+                            <TextStyle variation="strong">
+                              Example After Code:
+                            </TextStyle>
 
-                      <TextStyle variation="code">
-                        {"<"}img class="ExistingClass <b>easyOverlayImage</b>"
-                        <b>
-                          data-product_id="{"{{"}product.id{"}}"}"
-                        </b>{" "}
-                        src="{"{{"}
-                        featured_image {"|"} product_img_url: '1024x1024' {"}}"}
-                        " data-zoom-image="{"{{"} featured_image |
-                        product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
-                        product.title | escape {"}}"}"{"/>"}
-                      </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img class="ExistingClass{" "}
+                              <b>easyOverlayImage</b>"
+                              <b>
+                                data-product_id="{"{{"}product.id{"}}"}"
+                              </b>{" "}
+                              src="{"{{"}
+                              featured_image {"|"} product_img_url: '1024x1024'{" "}
+                              {"}}"}" data-zoom-image="{"{{"} featured_image |
+                              product_img_url: 'original' {"}}"}" alt="{"{{"}{" "}
+                              product.title | escape {"}}"}"{"/>"}
+                            </TextStyle>
 
-                      <Link
-                        url={
-                          "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
-                        }
-                        external
-                      >
-                        <img
-                          alt="step-2"
-                          width="100%"
-                          height="100%"
-                          src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
-                          className="eo_sg_step_4_after_img"
-                        />
-                      </Link>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_4.png"
+                                className="eo_sg_step_4_after_img"
+                              />
+                            </Link>
 
-                      <p>
-                        4. Follow the same steps on the collection.liquid and
-                        search.liquid pages
-                      </p>
+                            <p>
+                              4. Follow the same steps on the collection.liquid
+                              and search.liquid pages
+                            </p>
 
-                      <p>
-                        <TextStyle variation="strong">Need Help?</TextStyle> If
-                        you have questions or need help, please reach out to us
-                        through the chat icon on this page or email:{" "}
-                        <a
-                          href="mailto:dan@summitwebconsultants.com"
-                          target="_blank"
-                        >
-                          dan@summitwebconsultants.com
-                        </a>
-                        . We are here to help you and will be happy to install
-                        the code for you.
-                      </p>
-                    </Stack>
+                            <p>
+                              <TextStyle variation="strong">
+                                Need Help?
+                              </TextStyle>{" "}
+                              If you have questions or need help, please reach
+                              out to us through the chat icon on this page or
+                              email:{" "}
+                              <a
+                                href="mailto:dan@summitwebconsultants.com"
+                                target="_blank"
+                              >
+                                dan@summitwebconsultants.com
+                              </a>
+                              . We are here to help you and will be happy to
+                              install the code for you.
+                            </p>
+                          </Stack>
+                        ) : (
+                          <Stack vertical={true}>
+                            <Banner
+                              title="The below instructions are drafted based on Shopify Dawn (version 5.0.0) theme"
+                              status="info"
+                              secondaryAction={{
+                                content: "Learn more",
+                                onAction: () => {
+                                  window.open(
+                                    "https://help.shopify.com/en/manual/online-store/themes/themes-by-shopify/dawn",
+                                    "_blank"
+                                  );
+                                },
+                              }}
+                            />
+
+                            <p>
+                              1. Click on <b>Theme</b> {">"} <b>Actions</b>
+                              {">"} <b>Edit Code</b> then Open
+                              product-thumbnail.liquid and find {"<img>"} tag.{" "}
+                            </p>
+                            <p>
+                              2. If there is not a class= attribute in your{" "}
+                              {"<img>"} tag, simply add the code snippet below
+                              inside your {"<img>"} tag:
+                              class="easyOverlayImage" data-product_id="
+                              {"{{product.id}}"}"
+                            </p>
+
+                            {/* <p>
+                              Now go to theme edit-code and find {"<"}img{">"}{" "}
+                              elements in collection, product and search page and add
+                              class “<b>easyOverlayImage</b>” and attribute{" "}
+                              <b>data-product_id="{'{{product.id}}"'}</b> or{" "}
+                              <b>data-product_id="{'{{item.id}}"'}</b> in that tag. It
+                              depends on your theme.
+                            </p> */}
+
+                            <TextStyle variation="strong">
+                              Example Before Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img src="{"{{"}media {"|"} img_url: '1946x'{" "}
+                              {"}}"}"{"/>"}
+                            </TextStyle>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_1.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_1.png"
+                                className="eo_sg_step_2_before_img"
+                              />
+                            </Link>
+
+                            <TextStyle variation="strong">
+                              Example After Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img{" "}
+                              <b>
+                                class="easyOverlayImage" data-product_id="
+                                {"{{"}product.id{"}}"}"
+                              </b>{" "}
+                              src="{"{{"}media {"|"} img_url: '1946x' {"}}"}"
+                              {"/>"}
+                            </TextStyle>
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_2.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_2.png"
+                                className="eo_sg_step_2_after_img"
+                              />
+                            </Link>
+
+                            <p>
+                              3. If your {"<img>"} already has a class defined,
+                              simply add: easyOverlayImage inside the existing
+                              class attribute and add: data-product_id="
+                              {"{{product.id}}"}" before the close of the{" "}
+                              {"<img>"} tag.
+                            </p>
+
+                            <TextStyle variation="strong">
+                              Example Before Code:
+                            </TextStyle>
+                            <TextStyle variation="code">
+                              {"<"}img class="ExistingClass" src="{"{{"}media{" "}
+                              {"|"} img_url: '1946x' {"}}"}" data-zoom-image="
+                              {"{{"} media | img_url: 'original' {"}}"}" alt="
+                              {"{{"} product.title | escape {"}}"}"{"/>"}
+                            </TextStyle>
+
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_3.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_3.png"
+                                className="eo_sg_step_3_before_img"
+                              />
+                            </Link>
+
+                            <TextStyle variation="strong">
+                              Example After Code:
+                            </TextStyle>
+
+                            <TextStyle variation="code">
+                              {"<"}img class="ExistingClass{" "}
+                              <b>easyOverlayImage</b>"
+                              <b>
+                                data-product_id="{"{{"}product.id{"}}"}"
+                              </b>{" "}
+                              src="{"{{"}
+                              media {"|"} img_url: '1946x' {"}}"}"
+                              data-zoom-image="{"{{"} media | img_url:
+                              'original' {"}}"}" alt="{"{{"} product.title |
+                              escape {"}}"}"{"/>"}
+                            </TextStyle>
+
+                            <Link
+                              url={
+                                "https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_4.png"
+                              }
+                              external
+                            >
+                              <img
+                                alt="step-2"
+                                width="100%"
+                                height="100%"
+                                src="https://wr-shopify-apps.s3.amazonaws.com/public-app/easy-overlay/gallery/help-images/product_dawn_4.png"
+                                className="eo_sg_step_4_after_img"
+                              />
+                            </Link>
+
+                            <p>
+                              4. Follow the same steps on the
+                              main-collection-banner.liquid and
+                              main-search.liquid pages
+                            </p>
+
+                            <p>
+                              <TextStyle variation="strong">
+                                Need Help?
+                              </TextStyle>{" "}
+                              If you have questions or need help, please reach
+                              out to us through the chat icon on this page or
+                              email:{" "}
+                              <a
+                                href="mailto:dan@summitwebconsultants.com"
+                                target="_blank"
+                              >
+                                dan@summitwebconsultants.com
+                              </a>
+                              . We are here to help you and will be happy to
+                              install the code for you.
+                            </p>
+                          </Stack>
+                        )}
+                      </Card.Section>
+                    </Tabs>
                   </Card>
                 </Layout.AnnotatedSection>
 
