@@ -341,8 +341,7 @@ const Index = (props) => {
                               <TextStyle variation="strong">
                                 Need Help?
                               </TextStyle>{" "}
-                              If you have questions or need help, please reach
-                              out to us through the chat icon on this page or
+                              If you have questions or would like help, please
                               email:{" "}
                               <a
                                 href="mailto:dan@summitwebconsultants.com"
@@ -516,8 +515,7 @@ const Index = (props) => {
                               <TextStyle variation="strong">
                                 Need Help?
                               </TextStyle>{" "}
-                              If you have questions or need help, please reach
-                              out to us through the chat icon on this page or
+                              If you have questions or would like help, please
                               email:{" "}
                               <a
                                 href="mailto:dan@summitwebconsultants.com"
