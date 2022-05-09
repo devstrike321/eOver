@@ -89,12 +89,12 @@ const Index = (props) => {
   const tabs = [
     {
       id: "vintage-shopify-theme",
-      content: "Shopify Theme 1.0",
+      content: "Shopify Theme 1.0 (As Per Debut Theme)",
       panelID: "vintage-shopify-theme",
     },
     {
       id: "latest-shopify-theme",
-      content: "Shopify Theme 2.0",
+      content: "Shopify Theme 2.0 (As Per Dawn Theme)",
       panelID: "latest-shopify-theme",
     },
   ];
@@ -507,8 +507,8 @@ const Index = (props) => {
 
                             <p>
                               4. Follow the same steps on the
-                              main-collection-banner.liquid and
-                              main-search.liquid pages
+                              product-card.liquid page for collection and search
+                              page
                             </p>
 
                             <p>
