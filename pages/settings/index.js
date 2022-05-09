@@ -506,9 +506,12 @@ const Index = (props) => {
                             </Link>
 
                             <p>
-                              4. Follow the same steps on the
-                              product-card.liquid page for collection and search
-                              page
+                              4. Follow the same steps for the collection page
+                              collection.json {">>"}{" "}
+                              main-collection-product-grid.liquid {">>"}{" "}
+                              product-card.liquid and for search page
+                              search.json {">>"} main-search.liquid {">>"}{" "}
+                              product-card.liquid
                             </p>
 
                             <p>
