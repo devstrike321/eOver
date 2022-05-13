@@ -376,19 +376,7 @@ const Index = (props) => {
                           </Stack>
                         ) : (
                           <Stack vertical={true}>
-                            <Banner
-                              title=""
-                              status="info"
-                              secondaryAction={{
-                                content: "Learn more",
-                                onAction: () => {
-                                  window.open(
-                                    "https://help.shopify.com/en/manual/online-store/themes/themes-by-shopify/dawn",
-                                    "_blank"
-                                  );
-                                },
-                              }}
-                            >
+                            <Banner title="" status="info">
                               <p>
                                 The below instructions are based on Shopify Dawn
                                 (version 5.0.0) Theme. Your theme files may
