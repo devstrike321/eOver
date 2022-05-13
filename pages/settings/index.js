@@ -380,7 +380,7 @@ const Index = (props) => {
                               <p>
                                 The below instructions are based on Shopify Dawn
                                 (version 5.0.0) Theme. Your theme files may
-                                vary, for please contact{" "}
+                                vary, please contact{" "}
                                 <Link url="mailto:dan@summitwebconsultants.com">
                                   dan@summitwebconsultants.com
                                 </Link>{" "}
