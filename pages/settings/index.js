@@ -89,12 +89,12 @@ const Index = (props) => {
   const tabs = [
     {
       id: "vintage-shopify-theme",
-      content: "Shopify Theme 1.0 (As Per Debut Theme)",
+      content: "Shopify Theme 1.0",
       panelID: "vintage-shopify-theme",
     },
     {
       id: "latest-shopify-theme",
-      content: "Shopify Theme 2.0 (As Per Dawn Theme)",
+      content: "Shopify Theme 2.0",
       panelID: "latest-shopify-theme",
     },
   ];
@@ -139,7 +139,28 @@ const Index = (props) => {
             return (
               <Layout>
                 <Layout.AnnotatedSection
-                  title="Step - 1 Enable The App"
+                  title="App status"
+                  description="The entire app can be turned on or off by changing this setting at store level."
+                >
+                  <FormLayout>
+                    <SettingToggle
+                      action={{
+                        content: contentStatus,
+                        onAction: handleToggle,
+                        loading: changeAppStatusRes.loading,
+                      }}
+                      enabled={appEnable ? true : false}
+                    >
+                      <TextContainer spacing="tight">
+                        App is{" "}
+                        <TextStyle variation="strong">{textStatus}</TextStyle>.
+                      </TextContainer>
+                    </SettingToggle>
+                  </FormLayout>
+                </Layout.AnnotatedSection>
+
+                <Layout.AnnotatedSection
+                  title="Step - 1 Enable The App in your Theme"
                   description=""
                 >
                   <Card title="" sectioned>
@@ -356,7 +377,7 @@ const Index = (props) => {
                         ) : (
                           <Stack vertical={true}>
                             <Banner
-                              title="The below instructions are drafted based on Shopify Dawn (version 5.0.0) theme"
+                              title=""
                               status="info"
                               secondaryAction={{
                                 content: "Learn more",
@@ -367,7 +388,17 @@ const Index = (props) => {
                                   );
                                 },
                               }}
-                            />
+                            >
+                              <p>
+                                The below instructions are based on Shopify Dawn
+                                (version 5.0.0) Theme. Your theme files may
+                                vary, for please contact{" "}
+                                <Link url="mailto:dan@summitwebconsultants.com">
+                                  dan@summitwebconsultants.com
+                                </Link>{" "}
+                                for free installation assistance.
+                              </p>
+                            </Banner>
 
                             <p>
                               1. Click on <b>Theme</b> {">"} <b>Actions</b>
@@ -506,12 +537,8 @@ const Index = (props) => {
                             </Link>
 
                             <p>
-                              4. Follow the same steps for the collection page
-                              collection.json {">>"}{" "}
-                              main-collection-product-grid.liquid {">>"}{" "}
-                              product-card.liquid and for search page
-                              search.json {">>"} main-search.liquid {">>"}{" "}
-                              product-card.liquid
+                              4. Follow the same steps and edit the first{" "}
+                              {"<IMG>"} tag on page: product-card.liquid
                             </p>
 
                             <p>
@@ -534,27 +561,6 @@ const Index = (props) => {
                       </Card.Section>
                     </Tabs>
                   </Card>
-                </Layout.AnnotatedSection>
-
-                <Layout.AnnotatedSection
-                  title="App status"
-                  description="The entire app can be turned on or off by changing this setting at store level."
-                >
-                  <FormLayout>
-                    <SettingToggle
-                      action={{
-                        content: contentStatus,
-                        onAction: handleToggle,
-                        loading: changeAppStatusRes.loading,
-                      }}
-                      enabled={appEnable ? true : false}
-                    >
-                      <TextContainer spacing="tight">
-                        App is{" "}
-                        <TextStyle variation="strong">{textStatus}</TextStyle>.
-                      </TextContainer>
-                    </SettingToggle>
-                  </FormLayout>
                 </Layout.AnnotatedSection>
               </Layout>
             );
