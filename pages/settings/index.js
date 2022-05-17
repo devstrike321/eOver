@@ -28,7 +28,7 @@ const Index = (props) => {
   let appEmbedURL = `https://${shop}/admin/themes/current/editor?context=apps&appEmbed=${extentionUUID}%2Feasy-overlay-app`;
 
   let handleRefresh = null;
-  const [appEnable, setAppEnable] = useState(false);
+  const [appEnable, setAppEnable] = useState(true);
   const [queryToast, setQueryToast] = useState([]);
   const [pageTitle, setPageTitle] = useState("");
   const contentStatus = appEnable ? "Disable" : "Enable";
@@ -138,27 +138,6 @@ const Index = (props) => {
             if (error) return <div>{error.message}</div>;
             return (
               <Layout>
-                <Layout.AnnotatedSection
-                  title="App status"
-                  description="The entire app can be turned on or off by changing this setting at store level."
-                >
-                  <FormLayout>
-                    <SettingToggle
-                      action={{
-                        content: contentStatus,
-                        onAction: handleToggle,
-                        loading: changeAppStatusRes.loading,
-                      }}
-                      enabled={appEnable ? true : false}
-                    >
-                      <TextContainer spacing="tight">
-                        App is{" "}
-                        <TextStyle variation="strong">{textStatus}</TextStyle>.
-                      </TextContainer>
-                    </SettingToggle>
-                  </FormLayout>
-                </Layout.AnnotatedSection>
-
                 <Layout.AnnotatedSection
                   title="Step - 1 Enable The App in your Theme"
                   description=""
@@ -526,7 +505,7 @@ const Index = (props) => {
 
                             <p>
                               4. Follow the same steps and edit the first{" "}
-                              {"<IMG>"} tag on page: product-card.liquid
+                              {"<IMG>"} tag on page: card-product.liquid
                             </p>
 
                             <p>
@@ -549,6 +528,27 @@ const Index = (props) => {
                       </Card.Section>
                     </Tabs>
                   </Card>
+                </Layout.AnnotatedSection>
+
+                <Layout.AnnotatedSection
+                  title="App status"
+                  description="The entire app can be turned on or off by changing this setting at store level."
+                >
+                  <FormLayout>
+                    <SettingToggle
+                      action={{
+                        content: contentStatus,
+                        onAction: handleToggle,
+                        loading: changeAppStatusRes.loading,
+                      }}
+                      enabled={appEnable ? true : false}
+                    >
+                      <TextContainer spacing="tight">
+                        App is{" "}
+                        <TextStyle variation="strong">{textStatus}</TextStyle>.
+                      </TextContainer>
+                    </SettingToggle>
+                  </FormLayout>
                 </Layout.AnnotatedSection>
               </Layout>
             );
