@@ -370,7 +370,8 @@ const Index = (props) => {
                             <p>
                               1. Click on <b>Theme</b> {">"} <b>Actions</b>
                               {">"} <b>Edit Code</b> then Open
-                              product-thumbnail.liquid and find {"<img>"} tag.{" "}
+                              product-thumbnail.liquid and find 3rd {"<img>"}{" "}
+                              tag on this page.{" "}
                             </p>
                             <p>
                               2. If there is not a class= attribute in your{" "}
@@ -504,8 +505,10 @@ const Index = (props) => {
                             </Link>
 
                             <p>
-                              4. Follow the same steps and edit the first{" "}
-                              {"<IMG>"} tag on page: card-product.liquid
+                              4. Follow the same steps and edit the {"<IMG>"}{" "}
+                              tag on page: card-product.liquid. If you have
+                              multiple {"<IMG>"} tags change the one that
+                              references: card_product.featured_media
                             </p>
 
                             <p>
