@@ -165,10 +165,10 @@ const Index = (props) => {
                             <Button
                               plain
                               onClick={() => {
-                                redirect.dispatch(
-                                  Redirect.Action.REMOTE,
-                                  appEmbedURL
-                                );
+                                redirect.dispatch(Redirect.Action.REMOTE, {
+                                  url: appEmbedURL,
+                                  newContext: true,
+                                });
                               }}
                             >
                               Click Here
