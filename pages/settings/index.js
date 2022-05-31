@@ -167,7 +167,7 @@ const Index = (props) => {
                               onClick={() => {
                                 redirect.dispatch(
                                   Redirect.Action.REMOTE,
-                                  freePlanRedirectURl
+                                  appEmbedURL
                                 );
                               }}
                             >
