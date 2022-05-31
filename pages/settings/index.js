@@ -16,16 +16,23 @@ import {
   Icon,
   Banner,
   Tabs,
+  Button,
 } from "@shopify/polaris";
 import { Query, useMutation } from "react-apollo";
 import { QueryRootShopify, MutationShopify } from "../../graphql";
 import { ClipboardMinor } from "@shopify/polaris-icons";
+import { Redirect } from "@shopify/app-bridge/actions";
+import { useAppBridge } from "@shopify/app-bridge-react";
+
 const Index = (props) => {
   const { shop } = props;
 
   let extentionUUID = process.env.NEXT_PUBLIC_EXTENSION_UUID;
 
   let appEmbedURL = `https://${shop}/admin/themes/current/editor?context=apps&appEmbed=${extentionUUID}%2Feasy-overlay-app`;
+
+  const app = useAppBridge();
+  const redirect = Redirect.create(app);
 
   let handleRefresh = null;
   const [appEnable, setAppEnable] = useState(true);
@@ -155,9 +162,18 @@ const Index = (props) => {
                         <p>
                           <TextStyle variation="strong">
                             To enable App Embed Extension please{" "}
-                            <Link url={appEmbedURL} external>
+                            <Button
+                              plain
+                              onClick={() => {
+                                redirect.dispatch(
+                                  Redirect.Action.REMOTE,
+                                  freePlanRedirectURl
+                                );
+                              }}
+                            >
                               Click Here
-                            </Link>{" "}
+                            </Button>{" "}
+                            {/* <Link url={appEmbedURL} external>Click Here</Link> */}
                             and save.
                           </TextStyle>
                         </p>
