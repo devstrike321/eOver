@@ -62,10 +62,11 @@ app.prepare().then(async () => {
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
 
         const client = new Shopify.Clients.Graphql(shop, accessToken);
+        const objClient = new Shopify.Clients.Rest(shop, accessToken);
         ctx.client = client;
 
         //#region :- Register APP_UNINSTALLED Webhook
-        const response = await Shopify.Webhooks.Registry.register({
+        /* const response = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,
           path: "/webhooks",
@@ -84,6 +85,50 @@ app.prepare().then(async () => {
           console.log(
             `Failed to register APP_UNINSTALLED webhook: ${response.result}`
           );
+        } */
+        //#endregion
+
+        //#region - Setup Webhooks New Code - Hookdeck
+        const fetchWebhookRes = await objClient.get({ path: "webhooks" });
+        const webhookTopicsRes =
+          fetchWebhookRes?.body?.webhooks?.length > 0
+            ? fetchWebhookRes?.body?.webhooks
+            : [];
+
+        let webhookPromise = Array();
+        const webhook_topics = process.env.WEBHOOK_TOPICS.split(",");
+        if (webhook_topics.length > 0) {
+          for (let i = 0; i < webhook_topics.length; i++) {
+            if (webhookTopicsRes?.length > 0) {
+              const isWebhookExists = webhookTopicsRes.filter(
+                (web) => web.topic === webhook_topics[i]
+              );
+              if (isWebhookExists[0]?.id) {
+                const webhookId = isWebhookExists[0]?.id;
+                await objClient.delete({
+                  path: `webhooks/${webhookId}`,
+                });
+              }
+            }
+
+            webhookPromise.push(
+              objClient.post({
+                path: "/webhooks",
+                data: {
+                  webhook: {
+                    topic: webhook_topics[i],
+                    address: process.env.HOOKDECK_WEBHOOK_URL,
+                    format: "json",
+                  },
+                },
+                type: DataType.JSON,
+              })
+            );
+          }
+
+          if (webhookPromise.length > 0) {
+            await Promise.all(webhookPromise);
+          }
         }
         //#endregion
 
