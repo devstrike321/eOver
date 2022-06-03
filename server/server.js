@@ -11,7 +11,7 @@ import Router from "koa-router";
 import isVerified from "shopify-jwt-auth-verify";
 const jwt = require("jsonwebtoken");
 import EasyOverlayApi from "../components/EasyOverlayApi";
-// import { RedisStorage } from "../utils";
+import { RedisStorage } from "../utils";
 const { WebhooksController, shopifyPlanController } = require("../controllers");
 import { getSubscriptionUrl, getAppInstallation } from "./handlers";
 
@@ -21,7 +21,7 @@ const app = next({
   dev,
 });
 const handle = app.getRequestHandler();
-// let sessionStorage = new RedisStorage();
+let sessionStorage = new RedisStorage();
 
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY,
@@ -32,12 +32,12 @@ Shopify.Context.initialize({
   API_VERSION: process.env.SHOPIFY_API_VERSION,
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
-  SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
-  // SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
-  //   sessionStorage.storeCallback.bind(sessionStorage),
-  //   sessionStorage.loadCallback.bind(sessionStorage),
-  //   sessionStorage.deleteCallback.bind(sessionStorage)
-  // ),
+  // SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
+  SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
+    sessionStorage.storeCallback.bind(sessionStorage),
+    sessionStorage.loadCallback.bind(sessionStorage),
+    sessionStorage.deleteCallback.bind(sessionStorage)
+  ),
 });
 
 // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
