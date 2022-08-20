@@ -39,8 +39,6 @@ var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
                   overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
                   overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_search/100)+'px';
-                } else if(page=='index' && ol.scale_in_index>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_index/100)+'px';
                 }
               }
               if(ol.padding_right!=''){
@@ -51,8 +49,6 @@ var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
                   overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
                   overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_search/100)+'px';
-                }else if(page=='index' && ol.scale_in_index>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_index/100)+'px';
                 }
               }
               if(ol.padding_bottom!=''){
@@ -64,9 +60,7 @@ var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
                 }else if(page=='search' && ol.scale_in_search>0){
                   overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_search/100)+'px';
                 }
-                else if(page=='index' && ol.scale_in_index>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_index/100)+'px';
-                }
+                
               }
               if(ol.padding_left!=''){
                 overlayDiv.style.paddingLeft = ol.padding_left+'px';
@@ -77,9 +71,7 @@ var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
                 }else if(page=='search' && ol.scale_in_search>0){
                   overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_search/100)+'px';
                 }
-                else if(page=='index' && ol.scale_in_index>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_index/100)+'px';
-                }                
+                             
               }
               if(ol.font_size!=''){
                 overlayDiv.style.fontSize = ol.font_size+'px';
@@ -90,9 +82,7 @@ var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
                 }else if(page=='search' && ol.scale_in_search>0){
                   overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_search/100)+'px';
                 }
-                else if(page=='index' && ol.scale_in_index>0){
-                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_index/100)+'px';
-                }
+               
               }
               let rotate_css = '';
               if(ol.rotation!=''){
