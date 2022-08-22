@@ -1,5 +1,4 @@
-{% comment %}
-Don't change this file
+
 
 {% assign page_type_handle = request.page_type | handle %}
 {% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or page_type_handle == "index" %}
@@ -227,6 +226,11 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
 
 {% endif %}
 
-{% endcomment %}
+{% schema %}
+  {
+    "name": "Easy Overlay Settings",
+    "target": "body",
+    "settings": []
+  }
+{% endschema %}
 
-<div class="testing">asdfsfsdfsdfasdf</div>
