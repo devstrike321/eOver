@@ -1,6 +1,7 @@
 import ProductsIndex from "./products";
 
 const Index = (props) => {
+    console.log(111111);
     return (
     <ProductsIndex {...props}/>
 )};
