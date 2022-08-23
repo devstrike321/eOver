@@ -35,7 +35,6 @@ export function RECURRING_CREATE(
         }
     }`;
 }
-
 export const getSubscriptionUrl = async (ctx) => {
   const { client } = ctx;
   const shop = ctx.query.shop;
@@ -54,6 +53,5 @@ export const getSubscriptionUrl = async (ctx) => {
     .then(
       (response) => response.body.data.appSubscriptionCreate.confirmationUrl
     );
-
   return ctx.redirect(confirmationUrl);
 };
