@@ -1,23 +1,13 @@
-{% comment %}
-Don't change this file
-{% assign page_type_handle = request.page_type | handle %}
-{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or page_type_handle == "index" %}
+{% assign page_type_handle = request.page_type | handle %}{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or page_type_handle == "index" %}
 <script>
 var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
   var imageClass = 'easyOverlayImage';
-  function createOverlayHtml(item){
-    var page = '{{ page_type_handle }}';
-    if(item.overlays!=undefined && item.overlays.length>0){
+  function createOverlayHtml(item){    var page = '{{ page_type_handle }}';    if(item.overlays!=undefined && item.overlays.length>0){
       let product_id = item.product_id;
-      //found image element based on data attr and class
-      let imgElem;
-      let elems = document.querySelectorAll("[data-product_id='"+product_id+"']");
-      elems.forEach(function(e, index) {
-        if(e.classList.contains(imageClass)) {
+      let imgElem;      let elems = document.querySelectorAll("[data-product_id='"+product_id+"']");
+      elems.forEach(function(e, index) {        if(e.classList.contains(imageClass)) {
           imgElem = e;
-          item.overlays.forEach(function(ol, index) {
-            if(ol.type=='TEXT'){
-              var overlayDiv = document.createElement('div');
+      item.overlays.forEach(function(ol, index) {    if(ol.type=='TEXT'){              var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-text-section';
               overlayDiv.style.zIndex = '1';
               overlayDiv.style.width = 'auto';
@@ -77,7 +67,7 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
                 }
                 else if(page=='index' && ol.scale_in_index>0){
                   overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_index/100)+'px';
-                }               
+                } 
               }
               if(ol.font_size!=''){
                 overlayDiv.style.fontSize = ol.font_size+'px';
@@ -112,7 +102,7 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
             else if(ol.type=='IMAGE'){
               var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-image-section';
-              overlayDiv.style.zIndex = '1';
+               overlayDiv.style.zIndex = '1';
               overlayDiv.style.width = 'auto';
               overlayDiv.style.height = 'auto';
               overlayDiv.style.position = 'absolute';
@@ -185,9 +175,7 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
     }
     })();
   }
-</script>
-{% endif %}
-{% endcomment %}
+</script>{% endif %}
 {% schema %}
   {
     "name": "Easy Overlay Settings",
