@@ -101,7 +101,6 @@ function MyProvider(props) {
 
 class MyApp extends App {
   render() {
-    console.log(45454545);
     const { Component, pageProps, host } = this.props;
 
     return (
