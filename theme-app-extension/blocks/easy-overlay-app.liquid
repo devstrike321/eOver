@@ -1,40 +1,29 @@
 {% comment %}
 Don't change this file
-
 {% assign page_type_handle = request.page_type | handle %}
 {% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or page_type_handle == "index" %}
-
 <script>
 var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
   var imageClass = 'easyOverlayImage';
-
   function createOverlayHtml(item){
     var page = '{{ page_type_handle }}';
     if(item.overlays!=undefined && item.overlays.length>0){
       let product_id = item.product_id;
-
       //found image element based on data attr and class
       let imgElem;
       let elems = document.querySelectorAll("[data-product_id='"+product_id+"']");
       elems.forEach(function(e, index) {
         if(e.classList.contains(imageClass)) {
           imgElem = e;
-
-          //now we found image elem, now apply overlay on it
           item.overlays.forEach(function(ol, index) {
             if(ol.type=='TEXT'){
               var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-text-section';
-
-              //default css
               overlayDiv.style.zIndex = '1';
               overlayDiv.style.width = 'auto';
               overlayDiv.style.height = 'auto';
               overlayDiv.style.position = 'absolute';
-              //default css
-
               overlayDiv.innerHTML = ol.text;
-
               if(ol.font_family!=''){ overlayDiv.style.fontFamily = ol.font_family; }
               if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
               if(ol.text_align!=''){ overlayDiv.style.textAlign = ol.text_align; }
@@ -88,10 +77,8 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
                 }
                 else if(page=='index' && ol.scale_in_index>0){
                   overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_index/100)+'px';
-                }
-                
+                }               
               }
-
               if(ol.font_size!=''){
                 overlayDiv.style.fontSize = ol.font_size+'px';
                 if(page=='collection' && ol.scale_in_collection>0){
@@ -105,13 +92,11 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
                   overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_index/100)+'px';
                 }
               }
-
               let rotate_css = '';
               if(ol.rotation!=''){
                 overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)';
                 rotate_css = ' rotate('+ol.rotation+'deg)';
               }
-
               if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
               else if(ol.position=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
@@ -121,30 +106,21 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
               else if(ol.position=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
               else if(ol.position=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
-
-              //set overlay html before img element
               imgElem.insertAdjacentElement("beforebegin", overlayDiv);
-
-              //set relative css in parent element
               imgElem.parentElement.style.position = 'relative';
             }
             else if(ol.type=='IMAGE'){
               var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-image-section';
-
-              //default css
               overlayDiv.style.zIndex = '1';
               overlayDiv.style.width = 'auto';
               overlayDiv.style.height = 'auto';
               overlayDiv.style.position = 'absolute';
-              //default css
-
               let rotate_css = '';
               if(ol.rotation!=''){
                 overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)';
                 rotate_css = ' rotate('+ol.rotation+'deg)';
               }
-
               overlayDiv.style.maxWidth = '50%';
               if(page=='collection' && ol.scale_in_collection>0){
                 overlayDiv.style.maxWidth = ol.scale_in_collection+'%';
@@ -155,9 +131,7 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
               }else if(page=='index' && ol.scale_in_index>0){
                 overlayDiv.style.maxWidth = ol.scale_in_index+'%';
               }
-
               if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
-
               if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
               else if(ol.position=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
@@ -167,7 +141,6 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
               else if(ol.position=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
               else if(ol.position=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
-
               var overlayImg = document.createElement('img');
               overlayImg.style.width = '100%';
               overlayImg.style.height = '100%';
@@ -177,23 +150,16 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
               overlayImg.style.right = 'auto';
               overlayImg.style.bottom = 'auto';
               overlayImg.src = ol.image_url;
-
-              //set overlay html before img element
               overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
               imgElem.insertAdjacentElement("beforebegin", overlayDiv);
-
-              //set relative css in parent element
               imgElem.parentElement.style.position = 'relative';
             }
-
           });
         }
       });
-
     }
   }
 </script>
-
 <script>
   if(document.getElementsByClassName(imageClass).length>0){
     let product_id_arr = [];
@@ -202,11 +168,9 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
       let pro_id = i_elem.dataset.product_id;
       product_id_arr.push(pro_id);
     }
-
     var u = eo_api_url+'/shop_product_overlays?shop='+Shopify.shop;
     u += '&product_ids='+product_id_arr.join(',');
     u += '&page={{page_type_handle}}';
-
     (async () => {
        const rawResponse = await fetch(u, {
        method: 'GET',
@@ -214,19 +178,20 @@ var eo_api_url = 'https://easy-overlay-api.herokuapp.com/frontend';
        //body: JSON.stringify({'shop': Shopify.shop, 'product_ids': product_id_arr.join(',')})
     });
     const content = await rawResponse.json();
-
     if(content.data != undefined && content.data.length>0){
       content.data.forEach(function(item, index) {
         createOverlayHtml(item);
       });
     }
-
     })();
   }
 </script>
-
 {% endif %}
-
 {% endcomment %}
-
-<div class="testing">asdfsfsdfsdfasdf</div>
+{% schema %}
+  {
+    "name": "Easy Overlay Settings",
+    "target": "body",
+    "settings": []
+  }
+{% endschema %}
