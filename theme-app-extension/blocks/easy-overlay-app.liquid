@@ -1,107 +1,103 @@
-{% comment %}
-Don't change this file
-{% endcomment %}
-
+{% comment %}Don't change this file{% endcomment %}
 {% assign page_type_handle = request.page_type | handle %}
-{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" %}
-
+{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or page_type_handle == "index" %}
 <script>
-  var eo_api_url = 'https://api-easy-overlay.herokuapp.com/frontend';//'https://easy-overlay-api.herokuapp.com/frontend';
-  var imageClass = 'easyOverlayImage';
-  
+var eo_api_url = https://easy-overlay.herokuapp.com/frontend';
+  var imageClass = 'easyOverlayImag'e';
   function createOverlayHtml(item){
-    var page = '{{page_type_handle}}';
+    var page = '{{ page_type_handle }}';
     if(item.overlays!=undefined && item.overlays.length>0){
       let product_id = item.product_id;
-      
-      //found image element based on data attr and class
+      //welcome found image element based on data attr and class
       let imgElem;
       let elems = document.querySelectorAll("[data-product_id='"+product_id+"']");
       elems.forEach(function(e, index) {
         if(e.classList.contains(imageClass)) {
           imgElem = e;
-          
-          //now we found image elem, now apply overlay on it 
+          //now we found image elem, now apply overlay on it
           item.overlays.forEach(function(ol, index) {
             if(ol.type=='TEXT'){
               var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-text-section';
-
               //default css
               overlayDiv.style.zIndex = '1';
               overlayDiv.style.width = 'auto';
               overlayDiv.style.height = 'auto';
               overlayDiv.style.position = 'absolute';
-              overlayDiv.style.lineHeight = 'normal';
-              overlayDiv.style.wordBreak = 'break-all';
               //default css
-
               overlayDiv.innerHTML = ol.text;
-
               if(ol.font_family!=''){ overlayDiv.style.fontFamily = ol.font_family; }
               if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
               if(ol.text_align!=''){ overlayDiv.style.textAlign = ol.text_align; }
               if(ol.font_color!=''){ overlayDiv.style.color = ol.font_color; }
               if(ol.bg_color!=''){ overlayDiv.style.backgroundColor = ol.bg_color; }
-
-              if(ol.padding_top!=''){ 
-                overlayDiv.style.paddingTop = ol.padding_top+'px'; 
+              if(ol.padding_top!=''){
+                overlayDiv.style.paddingTop = ol.padding_top+'px';
                 if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_collection/100)+'px';   
+                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_collection/100)+'px';
                 }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_product/100)+'px';   
+                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_search/100)+'px';   
+                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_search/100)+'px';
+                } else if(page=='index' && ol.scale_in_index>0){
+                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_index/100)+'px';
                 }
               }
-              if(ol.padding_right!=''){ 
-                overlayDiv.style.paddingRight = ol.padding_right+'px'; 
+              if(ol.padding_right!=''){
+                overlayDiv.style.paddingRight = ol.padding_right+'px';
                 if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_collection/100)+'px';   
+                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_collection/100)+'px';
                 }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_product/100)+'px';   
+                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_search/100)+'px';   
+                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_search/100)+'px';
+                }else if(page=='index' && ol.scale_in_index>0){
+                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_index/100)+'px';
                 }
               }
-              if(ol.padding_bottom!=''){ 
-                overlayDiv.style.paddingBottom = ol.padding_bottom+'px'; 
+              if(ol.padding_bottom!=''){
+                overlayDiv.style.paddingBottom = ol.padding_bottom+'px';
                 if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_collection/100)+'px';   
+                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_collection/100)+'px';
                 }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_product/100)+'px';   
+                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_search/100)+'px';   
+                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_search/100)+'px';
+                }
+                else if(page=='index' && ol.scale_in_index>0){
+                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_index/100)+'px';
                 }
               }
-              if(ol.padding_left!=''){ 
-                overlayDiv.style.paddingLeft = ol.padding_left+'px'; 
+              if(ol.padding_left!=''){
+                overlayDiv.style.paddingLeft = ol.padding_left+'px';
                 if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_collection/100)+'px';   
+                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_collection/100)+'px';
                 }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_product/100)+'px';   
+                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_product/100)+'px';
                 }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_search/100)+'px';   
+                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_search/100)+'px';
+                }
+                else if(page=='index' && ol.scale_in_index>0){
+                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_index/100)+'px';
+                }                
+              }
+              if(ol.font_size!=''){
+                overlayDiv.style.fontSize = ol.font_size+'px';
+                if(page=='collection' && ol.scale_in_collection>0){
+                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_collection/100)+'px';
+                }else if(page=='product' && ol.scale_in_product>0){
+                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_product/100)+'px';
+                }else if(page=='search' && ol.scale_in_search>0){
+                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_search/100)+'px';
+                }else if(page=='index' && ol.scale_in_index>0){
+                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_index/100)+'px';
                 }
               }
-              
-              if(ol.font_size!=''){ 
-                overlayDiv.style.fontSize = ol.font_size+'px'; 
-                if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_collection/100)+'px';   
-                }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_product/100)+'px';   
-                }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.fontSize = (ol.font_size*ol.scale_in_search/100)+'px';   
-                }
-              }
-
               let rotate_css = '';
-              if(ol.rotation!=''){ 
-                overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)'; 
+              if(ol.rotation!=''){
+                overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)';
                 rotate_css = ' rotate('+ol.rotation+'deg)';
               }
-
               if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
               else if(ol.position=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
@@ -111,169 +107,66 @@ Don't change this file
               else if(ol.position=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
               else if(ol.position=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
               else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
-
               //set overlay html before img element
               imgElem.insertAdjacentElement("beforebegin", overlayDiv);
-
               //set relative css in parent element
               imgElem.parentElement.style.position = 'relative';
             }
             else if(ol.type=='IMAGE'){
               var overlayDiv = document.createElement('div');
               overlayDiv.className = 'overlay-image-section';
-
               //default css
               overlayDiv.style.zIndex = '1';
-              overlayDiv.style.width = '100%';
-              overlayDiv.style.height = '100%';
+              overlayDiv.style.width = 'auto';
+              overlayDiv.style.height = 'auto';
               overlayDiv.style.position = 'absolute';
-              overlayDiv.style.display = 'flex';
-              overlayDiv.style.overflow  = 'hidden';
               //default css
-
-              if(ol.padding_top!=''){ 
-                overlayDiv.style.paddingTop = ol.padding_top+'px'; 
-                if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_collection/100)+'px';   
-                }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingTop = ol.padding_top+'px';  
-                }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingTop = (ol.padding_top*ol.scale_in_search/100)+'px';   
-                }
-              }
-              if(ol.padding_right!=''){ 
-                overlayDiv.style.paddingRight = ol.padding_right+'px'; 
-                if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_collection/100)+'px';   
-                }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingRight = ol.padding_right+'px'; 
-                }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingRight = (ol.padding_right*ol.scale_in_search/100)+'px';   
-                }
-              }
-              if(ol.padding_bottom!=''){ 
-                overlayDiv.style.paddingBottom = ol.padding_bottom+'px'; 
-                if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_collection/100)+'px';   
-                }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingBottom = ol.padding_bottom+'px';  
-                }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingBottom = (ol.padding_bottom*ol.scale_in_search/100)+'px';   
-                }
-              }
-              if(ol.padding_left!=''){ 
-                overlayDiv.style.paddingLeft = ol.padding_left+'px'; 
-                if(page=='collection' && ol.scale_in_collection>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_collection/100)+'px';   
-                }else if(page=='product' && ol.scale_in_product>0){
-                  overlayDiv.style.paddingLeft = ol.padding_left+'px'; 
-                }else if(page=='search' && ol.scale_in_search>0){
-                  overlayDiv.style.paddingLeft = (ol.padding_left*ol.scale_in_search/100)+'px';   
-                }
-              }
-              
               let rotate_css = '';
-              if(ol.rotation!=''){ 
-                overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)'; 
+              if(ol.rotation!=''){
+                overlayDiv.style.transform = 'rotate('+ol.rotation+'deg)';
                 rotate_css = ' rotate('+ol.rotation+'deg)';
               }
-              
-              if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
-
-              if(ol.position=='TOP_LEFT'){ 
-                overlayDiv.style.top = 0;
-                overlayDiv.style.left = 0;
-                overlayDiv.style.alignItems = 'flex-start';
-                overlayDiv.style.justifyContent  = 'left';
-              }
-              else if(ol.position=='TOP_CENTER'){
-                overlayDiv.style.top = 0;
-                overlayDiv.style.left = '50%';
-                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css;
-                overlayDiv.style.alignItems = 'flex-start';
-                overlayDiv.style.justifyContent  = 'center';
-              }
-              else if(ol.position=='TOP_RIGHT'){
-                overlayDiv.style.top = 0;
-                overlayDiv.style.left = 'auto';
-                overlayDiv.style.right = 0; 
-                overlayDiv.style.alignItems = 'flex-start';
-                overlayDiv.style.justifyContent  = 'right';
-              }
-              else if(ol.position=='MIDDLE_LEFT'){
-                overlayDiv.style.top = '50%';
-                overlayDiv.style.left = 0;
-                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; 
-                overlayDiv.style.alignItems = 'center';
-                overlayDiv.style.justifyContent  = 'flex-start';
-              }
-              else if(ol.position=='MIDDLE_CENTER'){
-                overlayDiv.style.top = '50%';
-                overlayDiv.style.left = '50%';
-                overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; 
-                overlayDiv.style.alignItems = 'center';
-                overlayDiv.style.justifyContent  = 'center';
-              }
-              else if(ol.position=='MIDDLE_RIGHT'){
-                overlayDiv.style.top = '50%';
-                overlayDiv.style.left = 'auto';
-                overlayDiv.style.right = 0;
-                overlayDiv.style.transform = 'translateY(-50%)'+rotate_css;
-                overlayDiv.style.alignItems = 'center';
-                overlayDiv.style.justifyContent  = 'right';
-              }
-              else if(ol.position=='BOTTOM_LEFT'){
-                overlayDiv.style.top = 'auto';
-                overlayDiv.style.left = 0;
-                overlayDiv.style.bottom = 0; 
-                overlayDiv.style.alignItems = 'flex-end';
-                overlayDiv.style.justifyContent  = 'left';
-              }
-              else if(ol.position=='BOTTOM_CENTER'){
-                overlayDiv.style.top = 'auto';
-                overlayDiv.style.left = '50%';
-                overlayDiv.style.bottom = 0;
-                overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; 
-                overlayDiv.style.alignItems = 'flex-end';
-                overlayDiv.style.justifyContent  = 'center';
-              }
-              else if(ol.position=='BOTTOM_RIGHT'){
-                overlayDiv.style.top = 'auto';
-                overlayDiv.style.left = 'auto';
-                overlayDiv.style.bottom = 0;
-                overlayDiv.style.right = 0; 
-                overlayDiv.style.alignItems = 'flex-end';
-                overlayDiv.style.justifyContent  = 'right';
-              }
-
-              var overlayImg = document.createElement('img');
-              overlayImg.style.position = 'absolute';
-              overlayImg.src = ol.image_url;
-			
-              overlayImg.style.maxWidth = '50%';
+              overlayDiv.style.maxWidth = '50%';
               if(page=='collection' && ol.scale_in_collection>0){
-                overlayImg.style.maxWidth = ol.scale_in_collection+'%';   
+                overlayDiv.style.maxWidth = ol.scale_in_collection+'%';
               }else if(page=='product' && ol.scale_in_product>0){
-                overlayImg.style.maxWidth = ol.scale_in_product+'%';   
+                overlayDiv.style.maxWidth = ol.scale_in_product+'%';
               }else if(page=='search' && ol.scale_in_search>0){
-                overlayImg.style.maxWidth = ol.scale_in_search+'%';   
+                overlayDiv.style.maxWidth = ol.scale_in_search+'%';
+              }else if(page=='index' && ol.scale_in_index>0){
+                overlayDiv.style.maxWidth = ol.scale_in_index+'%';
               }
-              
+              if(ol.opacity!=''){ overlayDiv.style.opacity = ol.opacity; }
+              if(ol.position=='TOP_LEFT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 0; }
+              else if(ol.position=='TOP_CENTER'){ overlayDiv.style.top = 0;overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
+              else if(ol.position=='TOP_RIGHT'){ overlayDiv.style.top = 0;overlayDiv.style.left = 'auto';overlayDiv.style.right = 0; }
+              else if(ol.position=='MIDDLE_LEFT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
+              else if(ol.position=='MIDDLE_CENTER'){ overlayDiv.style.top = '50%';overlayDiv.style.left = '50%';overlayDiv.style.transform = 'translate(-50%,-50%)'+rotate_css; }
+              else if(ol.position=='MIDDLE_RIGHT'){ overlayDiv.style.top = '50%';overlayDiv.style.left = 'auto';overlayDiv.style.right = 0;overlayDiv.style.transform = 'translateY(-50%)'+rotate_css; }
+              else if(ol.position=='BOTTOM_LEFT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 0;overlayDiv.style.bottom = 0; }
+              else if(ol.position=='BOTTOM_CENTER'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = '50%';overlayDiv.style.bottom = 0;overlayDiv.style.transform = 'translateX(-50%)'+rotate_css; }
+              else if(ol.position=='BOTTOM_RIGHT'){ overlayDiv.style.top = 'auto';overlayDiv.style.left = 'auto';overlayDiv.style.bottom = 0;overlayDiv.style.right = 0; }
+              var overlayImg = document.createElement('img');
+              overlayImg.style.width = '100%';
+              overlayImg.style.height = '100%';
+              overlayImg.style.position = 'unset';
+              overlayImg.style.top = 'auto';
+              overlayImg.style.left = 'auto';
+              overlayImg.style.right = 'auto';
+              overlayImg.style.bottom = 'auto';
+              overlayImg.src = ol.image_url;
               //set overlay html before img element
               overlayDiv.insertAdjacentElement("afterbegin", overlayImg);
               imgElem.insertAdjacentElement("beforebegin", overlayDiv);
-
               //set relative css in parent element
               imgElem.parentElement.style.position = 'relative';
             }
           });
         }
       });
-      
     }
   }
 </script>
-
 <script>
   if(document.getElementsByClassName(imageClass).length>0){
     let product_id_arr = [];
@@ -282,11 +175,9 @@ Don't change this file
       let pro_id = i_elem.dataset.product_id;
       product_id_arr.push(pro_id);
     }
-    
     var u = eo_api_url+'/shop_product_overlays?shop='+Shopify.shop;
     u += '&product_ids='+product_id_arr.join(',');
-    u += '&page={{page_type_handle}}';
-    
+    u += '&page={{ page_type_handle }}';
     (async () => {
        const rawResponse = await fetch(u, {
        method: 'GET',
@@ -294,19 +185,15 @@ Don't change this file
        //body: JSON.stringify({'shop': Shopify.shop, 'product_ids': product_id_arr.join(',')})
     });
     const content = await rawResponse.json();
-
     if(content.data != undefined && content.data.length>0){
       content.data.forEach(function(item, index) {
         createOverlayHtml(item);
       });
     }
-      
     })();
   }
 </script>
-
 {% endif %}
-
 {% schema %}
   {
     "name": "Easy Overlay Settings",
