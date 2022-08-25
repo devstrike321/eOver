@@ -63,6 +63,7 @@ const TextOverlaySettings = (props) => {
     setTextScaleCollection,
     setTextScaleProduct,
     setTextScaleSearch,
+    setTextScaleHome,
     setOverlayEditId,
     setDisplayFontColorPicker,
     setDisplayBgColorPicker,
@@ -113,6 +114,7 @@ const TextOverlaySettings = (props) => {
     { label: "Display in product", value: "PRODUCT" },
     { label: "Display in collection", value: "COLLECTION" },
     { label: "Display in search", value: "IN_SEARCH" },
+    { label: "Display in HomePage", value: "IN_HOME" },
   ];
   //#endregion
 
@@ -131,10 +133,11 @@ const TextOverlaySettings = (props) => {
     setLeftPadding("2");
     setSelectedTextAlign("LEFT");
     setselectedTextPosition("MIDDLE_CENTER");
-    setTextDisplayInOptions(["COLLECTION", "PRODUCT", "IN_SEARCH"]);
+    setTextDisplayInOptions(["COLLECTION", "PRODUCT", "IN_SEARCH", "IN_HOME"]);
     setTextScaleCollection("50");
     setTextScaleProduct("100");
     setTextScaleSearch("50");
+    setTextScaleHome("100");
     setOverlayEditId(null);
   }, []);
   //#endregion
@@ -489,6 +492,25 @@ const TextOverlaySettings = (props) => {
                   setTextScaleSearch("1");
                 } else {
                   setTextScaleSearch(value);
+                }
+              }}
+            />
+            <TextField
+              type="number"
+              label="Scale in Home"
+              min="1.0"
+              max="100.0"
+              step="1"
+              suffix="%"
+              helpText="Preview not available"
+              value={textScaleSearch}
+              onChange={(value) => {
+                if (value > 100) {
+                  setTextScaleHome("100");
+                } else if (value < 1) {
+                  setTextScaleHome("1");
+                } else {
+                  setTextScaleHome(value);
                 }
               }}
             />
