@@ -84,6 +84,7 @@ const OverlayList = forwardRef((props, ref) => {
             setImageScaleCollection(item.scale_in_collection);
             setImageScaleProduct(item.scale_in_product);
             setImageScaleSearch(item.scale_in_search);
+            setImageScaleHome(item.scale_in_home);
 
             setTopPadding(item.padding_top);
             setRightPadding(item.padding_right);
@@ -195,7 +196,7 @@ const OverlayList = forwardRef((props, ref) => {
                     loading={networkStatus === NetworkStatus.refetch ? true :loading}
                     renderItem={(item,id,index) => {
                         
-                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search} = item;
+                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search, scale_in_home} = item;
 
                         let overlayRowInfo = [];
                         overlayRowInfo.push(
@@ -243,6 +244,7 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Scale in collection: {(scale_in_collection != '' && scale_in_collection != null) ? scale_in_collection+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in product: {(scale_in_product != '' && scale_in_product != null)? scale_in_product+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in search: {(scale_in_search != '' && scale_in_search != null)? scale_in_search+'%' : '0%'}</List.Item>
+                                        <List.Item>Scale in home: {(scale_in_home != '' && scale_in_home != null)? scale_in_home+'%' : '0%'}</List.Item>
                                     </List>
                                 </Stack>
                             )
@@ -266,6 +268,7 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Scale in collection: {(scale_in_collection != '' && scale_in_collection != null) ? scale_in_collection+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in product: {(scale_in_product != '' && scale_in_product != null)? scale_in_product+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in search: {(scale_in_search != '' && scale_in_search != null)? scale_in_search+'%' : '0%'}</List.Item>
+                                        <List.Item>Scale in search: {(scale_in_home != '' && scale_in_home != null)? scale_in_home+'%' : '0%'}</List.Item>
                                     </List>
                                 </Stack>
                             )
