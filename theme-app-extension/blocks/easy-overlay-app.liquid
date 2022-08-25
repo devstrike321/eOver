@@ -20,8 +20,6 @@ Don't change this file
       elems.forEach(function(e, index) {
         if(e.classList.contains(imageClass)) {
           imgElem = e;
-          
-          //now we found image elem, now apply overlay on it 
           item.overlays.forEach(function(ol, index) {
             if(ol.type=='TEXT'){
               var overlayDiv = document.createElement('div');
