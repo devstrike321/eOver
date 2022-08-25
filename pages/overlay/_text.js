@@ -41,6 +41,7 @@ const TextOverlaySettings = (props) => {
     textScaleCollection,
     textScaleProduct,
     textScaleSearch,
+    textScaleHome,
     overlayEditId,
     displayFontColorPicker,
     displayBgColorPicker,
@@ -179,9 +180,13 @@ const TextOverlaySettings = (props) => {
       display_in_search: _.includes(selectedTextDisplayInOptions, "IN_SEARCH")
         ? "Yes"
         : "No",
+        display_in_home: _.includes(selectedTextDisplayInOptions, "IN_HOME")
+        ? "Yes"
+        : "No",
       scale_in_collection: textScaleCollection,
       scale_in_product: textScaleProduct,
       scale_in_search: textScaleSearch,
+      scale_in_home: textScaleHome,
       overlay_id:
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
@@ -503,7 +508,7 @@ const TextOverlaySettings = (props) => {
               step="1"
               suffix="%"
               helpText="Preview not available"
-              value={textScaleSearch}
+              value={textScaleHome}
               onChange={(value) => {
                 if (value > 100) {
                   setTextScaleHome("100");

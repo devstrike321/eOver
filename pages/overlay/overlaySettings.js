@@ -26,10 +26,11 @@ const OverlaySettings = (props) => {
     const [rightPadding, setRightPadding] = useState('2');
     const [bottomPadding, setBottomPadding] = useState('2');
     const [leftPadding, setLeftPadding] = useState('2');
-    const [selectedTextDisplayInOptions, setTextDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH']);
+    const [selectedTextDisplayInOptions, setTextDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH', 'IN_HOME']);
     const [textScaleCollection, setTextScaleCollection] = useState('50');
     const [textScaleProduct, setTextScaleProduct] = useState('100');
     const [textScaleSearch, setTextScaleSearch] = useState('50');
+    const [textScaleHome, setTextScaleHome] = useState('100');
 
     const [displayFontColorPicker, setDisplayFontColorPicker] = useState(false);
     const [displayBgColorPicker, setDisplayBgColorPicker] = useState(false);
@@ -111,6 +112,7 @@ const OverlaySettings = (props) => {
         setTextScaleCollection,
         setTextScaleProduct,
         setTextScaleSearch,
+        setTextScaleHome,
         setImageScaleCollection,
         setImageScaleProduct,
         setImageScaleSearch,
@@ -146,10 +148,11 @@ const OverlaySettings = (props) => {
         setRightPadding('2');
         setBottomPadding('2');
         setLeftPadding('2');
-        setTextDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH']);
+        setTextDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH', 'IN_HOME']);
         setTextScaleCollection('50'),
         setTextScaleProduct('100'),
         setTextScaleSearch('50'),
+        setTextScaleHome('100'),
 
         setSelectedImagePosition('MIDDLE_CENTER');
         setSelectedImage('');
