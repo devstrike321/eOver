@@ -70,6 +70,9 @@ const OverlayList = forwardRef((props, ref) => {
             }if(item.display_in_search == 'Yes'){
                 textDisplayInArray.push("IN_SEARCH");
             }
+            if(item.display_in_home == 'Yes'){
+                textDisplayInArray.push("IN_HOME");
+            }
             setTextDisplayInOptions(textDisplayInArray);            
         }else{
             setSelectedTab(1);
@@ -196,7 +199,7 @@ const OverlayList = forwardRef((props, ref) => {
                     loading={networkStatus === NetworkStatus.refetch ? true :loading}
                     renderItem={(item,id,index) => {
                         
-                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search, scale_in_home} = item;
+                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search, display_in_home,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search, scale_in_home} = item;
 
                         let overlayRowInfo = [];
                         overlayRowInfo.push(
@@ -208,6 +211,7 @@ const OverlayList = forwardRef((props, ref) => {
                                     {display_in_collection == 'Yes' ? <Stack.Item><Badge>Collection</Badge></Stack.Item> : null}
                                     {display_in_product == 'Yes' ? <Stack.Item><Badge>Product</Badge></Stack.Item> : null}
                                     {display_in_search == 'Yes' ? <Stack.Item><Badge>In search</Badge></Stack.Item> : null}
+                                    {display_in_home == 'Yes' ? <Stack.Item><Badge>In home</Badge></Stack.Item> : null}
                                 </Stack>
                                 <br/>
                             </React.Fragment>

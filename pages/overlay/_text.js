@@ -180,7 +180,7 @@ const TextOverlaySettings = (props) => {
       display_in_search: _.includes(selectedTextDisplayInOptions, "IN_SEARCH")
         ? "Yes"
         : "No",
-        display_in_home: _.includes(selectedTextDisplayInOptions, "IN_HOME")
+      display_in_home: _.includes(selectedTextDisplayInOptions, "IN_HOME")
         ? "Yes"
         : "No",
       scale_in_collection: textScaleCollection,
