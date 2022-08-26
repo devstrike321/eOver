@@ -168,10 +168,7 @@ const TextOverlaySettings = (props) => {
       padding_bottom: bottomPadding,
       padding_left: leftPadding,
       status: "Active",
-      display_in_collection: _.includes(
-        selectedTextDisplayInOptions,
-        "COLLECTION"
-      )
+      display_in_collection: _.includes(selectedTextDisplayInOptions, "COLLECTION")
         ? "Yes"
         : "No",
       display_in_product: _.includes(selectedTextDisplayInOptions, "PRODUCT")
