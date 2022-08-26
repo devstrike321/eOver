@@ -25,7 +25,7 @@ const OverlayList = forwardRef((props, ref) => {
     //#endregion
     
     //#region :- Props Declaration
-    const {setSelectedTab,setText,setFontSize,setFontFamily,setFontcolor,setBgcolor,setOpacity,setRotation,setSelectedTextAlign,setselectedTextPosition,setTextDisplayInOptions,setTopPadding,setRightPadding,setBottomPadding,setLeftPadding,setOverlayEditId,setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setImageOverlaySrc,setSelectedGalleryImageURL,setChooseImageType,setTextScaleCollection,setTextScaleProduct,setTextScaleSearch,setTextScaleHome,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch,setImageScaleHome,setAddOverlay} = props.stateFunc;  
+    const {setSelectedTab,setText,setFontSize,setFontFamily,setFontcolor,setBgcolor,setOpacity,setRotation,setSelectedTextAlign,setselectedTextPosition,setTextDisplayInOptions,setTopPadding,setRightPadding,setBottomPadding,setLeftPadding,setOverlayEditId,setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setImageOverlaySrc,setSelectedGalleryImageURL,setChooseImageType,setTextScaleCollection,setTextScaleProduct,setTextScaleSearch,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch,setAddOverlay} = props.stateFunc;  
     //#endregion
 
     //#region :- View Overlay  (button toggle event for show/hide overlay details)
@@ -58,7 +58,6 @@ const OverlayList = forwardRef((props, ref) => {
             setTextScaleCollection(item.scale_in_collection);
             setTextScaleProduct(item.scale_in_product);
             setTextScaleSearch(item.scale_in_search);
-            setTextScaleHome(item.scale_in_home);
             
             setOverlayEditId(item.overlay_id);
 
@@ -69,9 +68,6 @@ const OverlayList = forwardRef((props, ref) => {
                 textDisplayInArray.push("COLLECTION");
             }if(item.display_in_search == 'Yes'){
                 textDisplayInArray.push("IN_SEARCH");
-            }
-            if(item.display_in_home == 'Yes'){
-                textDisplayInArray.push("IN_HOME");
             }
             setTextDisplayInOptions(textDisplayInArray);            
         }else{
@@ -87,7 +83,6 @@ const OverlayList = forwardRef((props, ref) => {
             setImageScaleCollection(item.scale_in_collection);
             setImageScaleProduct(item.scale_in_product);
             setImageScaleSearch(item.scale_in_search);
-            setImageScaleHome(item.scale_in_home);
 
             setTopPadding(item.padding_top);
             setRightPadding(item.padding_right);
@@ -101,8 +96,6 @@ const OverlayList = forwardRef((props, ref) => {
                 imageDisplayInArray.push("COLLECTION");
             }if(item.display_in_search == 'Yes'){
                 imageDisplayInArray.push("IN_SEARCH");
-            }if(item.display_in_home == 'Yes'){
-                imageDisplayInArray.push("IN_HOME");
             }
             setSelectedImageDisplayInOptions(imageDisplayInArray);
         }
@@ -201,7 +194,7 @@ const OverlayList = forwardRef((props, ref) => {
                     loading={networkStatus === NetworkStatus.refetch ? true :loading}
                     renderItem={(item,id,index) => {
                         
-                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search, display_in_home,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search, scale_in_home} = item;
+                        const {overlay_id, type, image_url, text, font_family, font_size, font_color, bg_color, opacity, rotation, text_align, position, display_in_collection, display_in_product, display_in_search,status,padding_top,padding_right,padding_bottom,padding_left,scale_in_collection,scale_in_product,scale_in_search} = item;
 
                         let overlayRowInfo = [];
                         overlayRowInfo.push(
@@ -213,7 +206,6 @@ const OverlayList = forwardRef((props, ref) => {
                                     {display_in_collection == 'Yes' ? <Stack.Item><Badge>Collection</Badge></Stack.Item> : null}
                                     {display_in_product == 'Yes' ? <Stack.Item><Badge>Product</Badge></Stack.Item> : null}
                                     {display_in_search == 'Yes' ? <Stack.Item><Badge>In search</Badge></Stack.Item> : null}
-                                    {display_in_home == 'Yes' ? <Stack.Item><Badge>In home</Badge></Stack.Item> : null}
                                 </Stack>
                                 <br/>
                             </React.Fragment>
@@ -250,7 +242,6 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Scale in collection: {(scale_in_collection != '' && scale_in_collection != null) ? scale_in_collection+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in product: {(scale_in_product != '' && scale_in_product != null)? scale_in_product+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in search: {(scale_in_search != '' && scale_in_search != null)? scale_in_search+'%' : '0%'}</List.Item>
-                                        <List.Item>Scale in home: {(scale_in_home != '' && scale_in_home != null)? scale_in_home+'%' : '0%'}</List.Item>
                                     </List>
                                 </Stack>
                             )
@@ -274,7 +265,6 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Scale in collection: {(scale_in_collection != '' && scale_in_collection != null) ? scale_in_collection+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in product: {(scale_in_product != '' && scale_in_product != null)? scale_in_product+'%' : '0%'}</List.Item>
                                         <List.Item>Scale in search: {(scale_in_search != '' && scale_in_search != null)? scale_in_search+'%' : '0%'}</List.Item>
-                                        <List.Item>Scale in search: {(scale_in_home != '' && scale_in_home != null)? scale_in_home+'%' : '0%'}</List.Item>
                                     </List>
                                 </Stack>
                             )

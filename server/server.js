@@ -146,7 +146,7 @@ app.prepare().then(async () => {
         //#endregion
 
         const appInstall = await getAppInstallation(ctx);
-        console.log(454545);
+
         if (appInstall?.status === "ACTIVE") {
           ctx.redirect(`/?shop=${shop}&host=${host}`); // Redirect to dashboard
         } else {

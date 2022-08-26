@@ -1,4 +1,3 @@
-
 import { Card, ResourceItem, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polaris';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';

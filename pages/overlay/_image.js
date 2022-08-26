@@ -163,7 +163,6 @@ const ImageOverlaySettings = (props) => {
     setImageScaleCollection("50");
     setImageScaleProduct("100");
     setImageScaleSearch("50");
-    setImageScaleHome("100");
     setOverlayEditId(0);
     setSelectedGalleryImageURL("");
   }, []);
@@ -241,7 +240,6 @@ const ImageOverlaySettings = (props) => {
       scale_in_collection: imageScaleCollection,
       scale_in_product: imageScaleProduct,
       scale_in_search: imageScaleSearch,
-      scale_in_home: imageScaleHome,
       overlay_id:
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
@@ -519,25 +517,6 @@ const ImageOverlaySettings = (props) => {
                 }
               }}
             />
-            <TextField
-            type="number"
-            label="Scale in Home"
-            value={imageScaleHome}
-            min="0.0"
-            max="100.0"
-            step="1"
-            suffix="%"
-            helpText="Preview not available"
-            onChange={(value) => {
-              if (value > 100) {
-                setImageScaleHome("100");
-              } else if (value < 1) {
-                setImageScaleHome("1");
-              } else {
-                setImageScaleHome(value);
-              }
-            }}
-          />
           </FormLayout.Group>
           {/* <FormLayout.Group>
                         <RangeSlider

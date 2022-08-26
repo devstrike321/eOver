@@ -41,7 +41,6 @@ const TextOverlaySettings = (props) => {
     textScaleCollection,
     textScaleProduct,
     textScaleSearch,
-    textScaleHome,
     overlayEditId,
     displayFontColorPicker,
     displayBgColorPicker,
@@ -64,7 +63,6 @@ const TextOverlaySettings = (props) => {
     setTextScaleCollection,
     setTextScaleProduct,
     setTextScaleSearch,
-    setTextScaleHome,
     setOverlayEditId,
     setDisplayFontColorPicker,
     setDisplayBgColorPicker,
@@ -115,7 +113,6 @@ const TextOverlaySettings = (props) => {
     { label: "Display in product", value: "PRODUCT" },
     { label: "Display in collection", value: "COLLECTION" },
     { label: "Display in search", value: "IN_SEARCH" },
-    { label: "Display in HomePage", value: "IN_HOME" },
   ];
   //#endregion
 
@@ -134,11 +131,10 @@ const TextOverlaySettings = (props) => {
     setLeftPadding("2");
     setSelectedTextAlign("LEFT");
     setselectedTextPosition("MIDDLE_CENTER");
-    setTextDisplayInOptions(["COLLECTION", "PRODUCT", "IN_SEARCH", "IN_HOME"]);
+    setTextDisplayInOptions(["COLLECTION", "PRODUCT", "IN_SEARCH"]);
     setTextScaleCollection("50");
     setTextScaleProduct("100");
     setTextScaleSearch("50");
-    setTextScaleHome("100");
     setOverlayEditId(null);
   }, []);
   //#endregion
@@ -168,7 +164,10 @@ const TextOverlaySettings = (props) => {
       padding_bottom: bottomPadding,
       padding_left: leftPadding,
       status: "Active",
-      display_in_collection: _.includes(selectedTextDisplayInOptions, "COLLECTION")
+      display_in_collection: _.includes(
+        selectedTextDisplayInOptions,
+        "COLLECTION"
+      )
         ? "Yes"
         : "No",
       display_in_product: _.includes(selectedTextDisplayInOptions, "PRODUCT")
@@ -177,13 +176,9 @@ const TextOverlaySettings = (props) => {
       display_in_search: _.includes(selectedTextDisplayInOptions, "IN_SEARCH")
         ? "Yes"
         : "No",
-      display_in_home: _.includes(selectedTextDisplayInOptions, "IN_HOME")
-        ? "Yes"
-        : "No",
       scale_in_collection: textScaleCollection,
       scale_in_product: textScaleProduct,
       scale_in_search: textScaleSearch,
-      scale_in_home: textScaleHome,
       overlay_id:
         overlayEditId != null && overlayEditId > 0 ? overlayEditId : "",
     };
@@ -494,25 +489,6 @@ const TextOverlaySettings = (props) => {
                   setTextScaleSearch("1");
                 } else {
                   setTextScaleSearch(value);
-                }
-              }}
-            />
-            <TextField
-              type="number"
-              label="Scale in Home"
-              min="1.0"
-              max="100.0"
-              step="1"
-              suffix="%"
-              helpText="Preview not available"
-              value={textScaleHome}
-              onChange={(value) => {
-                if (value > 100) {
-                  setTextScaleHome("100");
-                } else if (value < 1) {
-                  setTextScaleHome("1");
-                } else {
-                  setTextScaleHome(value);
                 }
               }}
             />

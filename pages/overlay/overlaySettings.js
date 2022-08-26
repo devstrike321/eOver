@@ -26,11 +26,10 @@ const OverlaySettings = (props) => {
     const [rightPadding, setRightPadding] = useState('2');
     const [bottomPadding, setBottomPadding] = useState('2');
     const [leftPadding, setLeftPadding] = useState('2');
-    const [selectedTextDisplayInOptions, setTextDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH', 'IN_HOME']);
+    const [selectedTextDisplayInOptions, setTextDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH']);
     const [textScaleCollection, setTextScaleCollection] = useState('50');
     const [textScaleProduct, setTextScaleProduct] = useState('100');
     const [textScaleSearch, setTextScaleSearch] = useState('50');
-    const [textScaleHome, setTextScaleHome] = useState('100');
 
     const [displayFontColorPicker, setDisplayFontColorPicker] = useState(false);
     const [displayBgColorPicker, setDisplayBgColorPicker] = useState(false);
@@ -40,13 +39,12 @@ const OverlaySettings = (props) => {
     const [selectedImagePosition, setSelectedImagePosition] = useState('MIDDLE_CENTER');
     const [selectedImage, setSelectedImage] = useState('');
     const [selectedGalleryImageURL, setSelectedGalleryImageURL] = useState('');
-    const [selectedImageDisplayInOptions, setSelectedImageDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH','IN_HOME']);
+    const [selectedImageDisplayInOptions, setSelectedImageDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH']);
     const [imageWidth, setImageWidth] = useState('100');
     const [chooseImageType, setChooseImageType] = useState(['NEW_IMAGE']);
     const [imageScaleCollection, setImageScaleCollection] = useState('50');
     const [imageScaleProduct, setImageScaleProduct] = useState('100');
     const [imageScaleSearch, setImageScaleSearch] = useState('50');
-    const [imageScaleHome, setImageScaleHome] = useState('100');
     
     //#endregion
 
@@ -70,7 +68,6 @@ const OverlaySettings = (props) => {
         textScaleCollection,
         textScaleProduct,
         textScaleSearch,
-        textScaleHome,
         displayFontColorPicker,
         displayBgColorPicker,
         selectedImagePosition,
@@ -83,7 +80,6 @@ const OverlaySettings = (props) => {
         imageScaleCollection,
         imageScaleProduct,
         imageScaleSearch,
-        imageScaleHome,
         addOverlay
     };
 	const stateFunc = {
@@ -115,11 +111,9 @@ const OverlaySettings = (props) => {
         setTextScaleCollection,
         setTextScaleProduct,
         setTextScaleSearch,
-        setTextScaleHome,
         setImageScaleCollection,
         setImageScaleProduct,
         setImageScaleSearch,
-        setImageScaleHome,
         setAddOverlay
     };
     
@@ -152,22 +146,20 @@ const OverlaySettings = (props) => {
         setRightPadding('2');
         setBottomPadding('2');
         setLeftPadding('2');
-        setTextDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH', 'IN_HOME']);
+        setTextDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH']);
         setTextScaleCollection('50'),
         setTextScaleProduct('100'),
         setTextScaleSearch('50'),
-        setTextScaleHome('100'),
 
         setSelectedImagePosition('MIDDLE_CENTER');
         setSelectedImage('');
         setImageOverlaySrc('');
-        setSelectedImageDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH','IN_HOME']);
+        setSelectedImageDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH']);
         setImageWidth('100');
         setChooseImageType(['NEW_IMAGE']);
         setImageScaleCollection('50'),
         setImageScaleProduct('100'),
         setImageScaleSearch('50'),
-        setImageScaleHome('100'),
 
         setOverlayEditId(null);        
     };
@@ -389,7 +381,7 @@ const OverlaySettings = (props) => {
         return () => {
             didComplete = true;
         };
-    }, [selectedTab,text,fontSize,fontFamily,fontcolor,bgcolor,opacity,rotation,selectedTextAlign,selectedTextPosition,topPadding,rightPadding,bottomPadding,leftPadding,textScaleCollection,textScaleProduct,textScaleSearch,textScaleHome,imageScaleCollection,imageScaleProduct,imageScaleSearch,imageScaleHome,selectedImagePosition,selectedImage,imageOverlaySrc,imageWidth, addOverlay]);
+    }, [selectedTab,text,fontSize,fontFamily,fontcolor,bgcolor,opacity,rotation,selectedTextAlign,selectedTextPosition,topPadding,rightPadding,bottomPadding,leftPadding,textScaleCollection,textScaleProduct,textScaleSearch,imageScaleCollection,imageScaleProduct,imageScaleSearch,selectedImagePosition,selectedImage,imageOverlaySrc,imageWidth, addOverlay]);
     //#endregion
     
     const childListRef = useRef();
