@@ -161,7 +161,7 @@ const OverlaySettings = (props) => {
         setSelectedImagePosition('MIDDLE_CENTER');
         setSelectedImage('');
         setImageOverlaySrc('');
-        setSelectedImageDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH']);
+        setSelectedImageDisplayInOptions(['COLLECTION','PRODUCT','IN_SEARCH','IN_HOME']);
         setImageWidth('100');
         setChooseImageType(['NEW_IMAGE']);
         setImageScaleCollection('50'),
