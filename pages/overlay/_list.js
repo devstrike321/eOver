@@ -25,7 +25,7 @@ const OverlayList = forwardRef((props, ref) => {
     //#endregion
     
     //#region :- Props Declaration
-    const {setSelectedTab,setText,setFontSize,setFontFamily,setFontcolor,setBgcolor,setOpacity,setRotation,setSelectedTextAlign,setselectedTextPosition,setTextDisplayInOptions,setTopPadding,setRightPadding,setBottomPadding,setLeftPadding,setOverlayEditId,setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setImageOverlaySrc,setSelectedGalleryImageURL,setChooseImageType,setTextScaleCollection,setTextScaleProduct,setTextScaleSearch,setTextScaleHome,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch,setAddOverlay} = props.stateFunc;  
+    const {setSelectedTab,setText,setFontSize,setFontFamily,setFontcolor,setBgcolor,setOpacity,setRotation,setSelectedTextAlign,setselectedTextPosition,setTextDisplayInOptions,setTopPadding,setRightPadding,setBottomPadding,setLeftPadding,setOverlayEditId,setSelectedImagePosition,setSelectedImageDisplayInOptions,setSelectedImage,setImageOverlaySrc,setSelectedGalleryImageURL,setChooseImageType,setTextScaleCollection,setTextScaleProduct,setTextScaleSearch,setTextScaleHome,setImageScaleCollection,setImageScaleProduct,setImageScaleSearch,setImageScaleHome,setAddOverlay} = props.stateFunc;  
     //#endregion
 
     //#region :- View Overlay  (button toggle event for show/hide overlay details)

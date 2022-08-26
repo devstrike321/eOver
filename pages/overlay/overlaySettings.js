@@ -46,6 +46,7 @@ const OverlaySettings = (props) => {
     const [imageScaleCollection, setImageScaleCollection] = useState('50');
     const [imageScaleProduct, setImageScaleProduct] = useState('100');
     const [imageScaleSearch, setImageScaleSearch] = useState('50');
+    const [imageScaleHome, setImageScaleHome] = useState('100');
     
     //#endregion
 
@@ -82,6 +83,7 @@ const OverlaySettings = (props) => {
         imageScaleCollection,
         imageScaleProduct,
         imageScaleSearch,
+        imageScaleHome,
         addOverlay
     };
 	const stateFunc = {
@@ -117,6 +119,7 @@ const OverlaySettings = (props) => {
         setImageScaleCollection,
         setImageScaleProduct,
         setImageScaleSearch,
+        setImageScaleHome,
         setAddOverlay
     };
     
@@ -164,6 +167,7 @@ const OverlaySettings = (props) => {
         setImageScaleCollection('50'),
         setImageScaleProduct('100'),
         setImageScaleSearch('50'),
+        setImageScaleHome('100'),
 
         setOverlayEditId(null);        
     };
@@ -385,7 +389,7 @@ const OverlaySettings = (props) => {
         return () => {
             didComplete = true;
         };
-    }, [selectedTab,text,fontSize,fontFamily,fontcolor,bgcolor,opacity,rotation,selectedTextAlign,selectedTextPosition,topPadding,rightPadding,bottomPadding,leftPadding,textScaleCollection,textScaleProduct,textScaleSearch,textScaleHome,imageScaleCollection,imageScaleProduct,imageScaleSearch,selectedImagePosition,selectedImage,imageOverlaySrc,imageWidth, addOverlay]);
+    }, [selectedTab,text,fontSize,fontFamily,fontcolor,bgcolor,opacity,rotation,selectedTextAlign,selectedTextPosition,topPadding,rightPadding,bottomPadding,leftPadding,textScaleCollection,textScaleProduct,textScaleSearch,textScaleHome,imageScaleCollection,imageScaleProduct,imageScaleSearch,imageScaleHome,selectedImagePosition,selectedImage,imageOverlaySrc,imageWidth, addOverlay]);
     //#endregion
     
     const childListRef = useRef();
