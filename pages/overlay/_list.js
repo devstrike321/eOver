@@ -101,6 +101,8 @@ const OverlayList = forwardRef((props, ref) => {
                 imageDisplayInArray.push("COLLECTION");
             }if(item.display_in_search == 'Yes'){
                 imageDisplayInArray.push("IN_SEARCH");
+            }if(item.display_in_home == 'Yes'){
+                imageDisplayInArray.push("IN_Home");
             }
             setSelectedImageDisplayInOptions(imageDisplayInArray);
         }
