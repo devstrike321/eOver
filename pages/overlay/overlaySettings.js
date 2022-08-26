@@ -40,7 +40,7 @@ const OverlaySettings = (props) => {
     const [selectedImagePosition, setSelectedImagePosition] = useState('MIDDLE_CENTER');
     const [selectedImage, setSelectedImage] = useState('');
     const [selectedGalleryImageURL, setSelectedGalleryImageURL] = useState('');
-    const [selectedImageDisplayInOptions, setSelectedImageDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH']);
+    const [selectedImageDisplayInOptions, setSelectedImageDisplayInOptions] = useState(['COLLECTION','PRODUCT','IN_SEARCH','IN_HOME']);
     const [imageWidth, setImageWidth] = useState('100');
     const [chooseImageType, setChooseImageType] = useState(['NEW_IMAGE']);
     const [imageScaleCollection, setImageScaleCollection] = useState('50');
