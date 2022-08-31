@@ -102,9 +102,8 @@ function MyProvider(props) {
 class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
-    
+
     return (
-      
       <Provider
         config={{
           apiKey: API_KEY,
@@ -135,7 +134,6 @@ class MyApp extends App {
 
 MyApp.getInitialProps = async ({ ctx }) => {
   return {
-
     host: ctx.query.host,
     shop: ctx.query.shop,
   };
