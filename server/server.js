@@ -384,10 +384,8 @@ app.prepare().then(async () => {
           charge_id,
           sel_plan
         );
-        console.log(11111111);
         ctx.redirect(`/?shop=${shop_name}&host=${host}`);
       } else {
-        console.log(22222);
         ctx.redirect(`/auth?shop=${shop}`);
       }
     } else {
