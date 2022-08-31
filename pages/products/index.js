@@ -386,7 +386,7 @@ const ProductsIndex = (props) => {
             <Layout.Section>
               <Card sectioned>
                 <Card.Section>
-                  <h2 className="overlay_product_count_text">
+                  <h2 className="overlay_product_count_texttttttttttttttttttttt">
                     Current Overlay Product Count:{" "}
                     {Number(shopProductOverlayCount)}
                   </h2>
