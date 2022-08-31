@@ -102,7 +102,7 @@ function MyProvider(props) {
 class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
-    console.log(123123123);
+    
     return (
       
       <Provider
@@ -112,6 +112,7 @@ class MyApp extends App {
           forceRedirect: true,
         }}
       >
+      console.log(123123123);
         <Script>
           {`
           var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
