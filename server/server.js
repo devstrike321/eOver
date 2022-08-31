@@ -8,7 +8,7 @@ import Shopify, { DataType } from "@shopify/shopify-api";
 import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
-import isVerified from "shopify-jwt-auth-verify";
+import isVerified from "shopify-jwt-auth-verify";      
 const jwt = require("jsonwebtoken");
 import EasyOverlayApi from "../components/EasyOverlayApi";
 import { RedisStorage } from "../utils";
@@ -384,8 +384,10 @@ app.prepare().then(async () => {
           charge_id,
           sel_plan
         );
+        console.log(11111111);
         ctx.redirect(`/?shop=${shop_name}&host=${host}`);
       } else {
+        console.log(22222);
         ctx.redirect(`/auth?shop=${shop}`);
       }
     } else {
