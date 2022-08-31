@@ -102,8 +102,9 @@ function MyProvider(props) {
 class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
-
+    console.log(123123123);
     return (
+      
       <Provider
         config={{
           apiKey: API_KEY,
