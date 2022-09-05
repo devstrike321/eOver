@@ -21,7 +21,7 @@ const OverlayList = forwardRef((props, ref) => {
     const [removeOverlayId, setRemoveOverlayId] = useState(0);
     const [overlayDetailOpen, setOverlayDetailOpen] = useState(false);
     const [removeModalActive, setRemoveModalActive] = useState(false);
-    const [queryToast, setQueryToast] = useState([]);                                                          
+    const [queryToast, setQueryToast] = useState([]);
     //#endregion
     
     //#region :- Props Declaration
@@ -218,7 +218,7 @@ const OverlayList = forwardRef((props, ref) => {
                                         <List.Item>Font size: {font_size}</List.Item>
                                         <List.Item>Font family: {font_family}</List.Item>
                                     </List>
-                                                  
+
                                     <List type="bullet">
                                         <List.Item>Font color: {font_color}</List.Item>
                                         <List.Item>Background color: {bg_color}</List.Item>
