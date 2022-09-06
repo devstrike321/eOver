@@ -3,8 +3,7 @@ Don't change this file
 {% endcomment %}
 
 {% assign page_type_handle = request.page_type | handle %}
-{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" %}
-
+{% if page_type_handle == "collection" or page_type_handle == "product" or page_type_handle == "search" or template == 'index'%}
 <script>
   var eo_api_url = 'https://api-easy-overlay.herokuapp.com/frontend';//'https://easy-overlay-api.herokuapp.com/frontend';
   var imageClass = 'easyOverlayImage';
@@ -271,10 +270,8 @@ Don't change this file
       });
       
     }
-  }
-</script>
-
-<script>
+  } 
+  
   if(document.getElementsByClassName(imageClass).length>0){
     let product_id_arr = [];
     for(let i=0; i<document.getElementsByClassName(imageClass).length; i++){
@@ -287,21 +284,22 @@ Don't change this file
     u += '&product_ids='+product_id_arr.join(',');
     u += '&page={{page_type_handle}}';
     
-    (async () => {
-       const rawResponse = await fetch(u, {
-       method: 'GET',
-       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-       //body: JSON.stringify({'shop': Shopify.shop, 'product_ids': product_id_arr.join(',')})
-    });
-    const content = await rawResponse.json();
-
-    if(content.data != undefined && content.data.length>0){
-      content.data.forEach(function(item, index) {
-        createOverlayHtml(item);
-      });
-    }
-      
-    })();
+	$.ajax({
+	type: 'GET',
+	url: u,
+	dataType: 'json',           
+	success: function(data) {
+	  console.log(data);
+	  const content = data;
+	  if(content.data != undefined && content.data.length>0){
+		content.data.forEach(function(item, index) {
+		console.log(item);
+		createOverlayHtml(item);
+	  });
+	 }
+	// JSON.stringify({'shop': Shopify.shop, 'product_ids': product_id_arr.join(',')})
+	}
+	});
   }
 </script>
 
