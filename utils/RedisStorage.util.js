@@ -6,12 +6,12 @@ class RedisStore {
     // Create a new redis client and connect to the server
     this.client = createClient({
       url: process.env.REDIS_URL,
-      // socket:{
-      //     tls:true,
-      //     timeout:10000,
-      //     keepAlive:10000,
-      //     rejectUnauthorized:false
-      // }
+      socket:{
+          tls:true,
+          timeout:10000,
+          keepAlive:10000,
+          rejectUnauthorized:false
+      }
     });
     this.client.on('error', (err) => console.log('Redis Client Error', err));
     this.client.connect();
