@@ -14,7 +14,6 @@ import EasyOverlayApi from "../components/EasyOverlayApi";
 import { RedisStorage } from "../utils";
 const { WebhooksController, shopifyPlanController } = require("../controllers");
 import { getSubscriptionUrl, getAppInstallation } from "./handlers";
-import { CookieSessionStorage } from '@shopify/hydrogen/config';
 
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
@@ -34,18 +33,11 @@ Shopify.Context.initialize({
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
   // SESSION_STORAGE: new Shopify.Session.MemorySessionStorage(),
-  SESSION_STORAGE: CookieSessionStorage('__session', {
-    path: '/',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'strict',
-    maxAge: 60 * 60 * 24 * 30,
-  })
-  // SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
-  //   sessionStorage.storeCallback.bind(sessionStorage),
-  //   sessionStorage.loadCallback.bind(sessionStorage),
-  //   sessionStorage.deleteCallback.bind(sessionStorage)
-  // ),
+  SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
+    sessionStorage.storeCallback.bind(sessionStorage),
+    sessionStorage.loadCallback.bind(sessionStorage),
+    sessionStorage.deleteCallback.bind(sessionStorage)
+  ),
 });
 
 // Storing the currently active shops in memory will force them to re-login when your server restarts. You should
