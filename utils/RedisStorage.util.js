@@ -23,7 +23,7 @@ class RedisStore {
     If the session can be stored, return true
     Otherwise, return false
   */
-  async storeCallback(session) {
+  async storeCallback(session, retry = 0) {
     try {
         if(!this.client.isOpen){
             await this.client.connect();
@@ -32,8 +32,13 @@ class RedisStore {
       // This method returns a boolean (true if successful, false if not)
       return await this.client.set(session.id, JSON.stringify(session));
     } catch (err) {
-      // throw errors, and handle them gracefully in your application
-      throw new Error(err);
+      console.log(`${__filename}::storeCallback`, session, retry, err);
+      if (retry > 2) {
+        // throw errors, and handle them gracefully in your application
+        throw new Error(err);
+      }
+      retry += 1;
+      return await this.storeCallback(session, retry);
     }
   }
 
@@ -42,7 +47,7 @@ class RedisStore {
      If a stored session exists, it's parsed and returned
      Otherwise, return undefined
   */
-  async loadCallback(id) {
+  async loadCallback(id, retry = 0) {
     try {
         if(!this.client.isOpen){
             await this.client.connect();
@@ -57,7 +62,13 @@ class RedisStore {
         return undefined;
       }
     } catch (err) {
-      throw new Error(err);
+      console.log(`${__filename}::loadCallback`, id, retry, err);
+      if (retry > 2) {
+        // throw errors, and handle them gracefully in your application
+        throw new Error(err);
+      }
+      retry += 1;
+      return await this.loadCallback(id, retry);
     }
   }
 
@@ -66,7 +77,7 @@ class RedisStore {
     If the session can be deleted, return true
     Otherwise, return false
   */
-  async deleteCallback(id) {
+  async deleteCallback(id, retry = 0) {
     try {
         if(!this.client.isOpen){
             await this.client.connect();
@@ -75,7 +86,13 @@ class RedisStore {
       // This method returns a boolean (true if successful, false if not)
       return await this.client.del(id);
     } catch (err) {
-      throw new Error(err);
+      console.log(`${__filename}::deleteCallback`, id, retry, err);
+      if (retry > 2) {
+        // throw errors, and handle them gracefully in your application
+        throw new Error(err);
+      }
+      retry += 1;
+      return await this.deleteCallback(id, retry);
     }
   }
 }
