@@ -46,9 +46,9 @@ function MyProvider(props) {
     uri: `${process.env.NEXT_PUBLIC_API_URL}/`,
     customFetch: authenticatedFetch(app),
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
     defaultSerializer: (data, headers) => {
       const formData = new FormData();
       for (let key in data) {
