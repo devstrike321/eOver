@@ -56,10 +56,9 @@ app.prepare().then(async () => {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
 
-        console.log({ shop, accessToken, scope });
-
         const host = ctx.query.host;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
+        console.log(123, ACTIVE_SHOPIFY_SHOPS, { shop, accessToken, scope });
 
         const client = new Shopify.Clients.Graphql(shop, accessToken);
         const objClient = new Shopify.Clients.Rest(shop, accessToken);
@@ -371,9 +370,12 @@ app.prepare().then(async () => {
       await appStatusCheck(ctx, shop);
     }
 
+    console.log(111, ACTIVE_SHOPIFY_SHOPS);
     // This shop hasn't been seen yet, go through OAuth to create a session
     if (ACTIVE_SHOPIFY_SHOPS[shop] === undefined) {
+      console.log(222);
       if (ctx.url.includes("/get-shopify-plan")) {
+        console.log(333);
         const { shop_name, charge_id, sel_plan } = ctx.query;
         const host = Buffer.from(shop_name + "/admin").toString("base64");
 
@@ -386,9 +388,12 @@ app.prepare().then(async () => {
         );
         ctx.redirect(`/?shop=${shop_name}&host=${host}`);
       } else {
+        console.log(444);
         ctx.redirect(`/auth?shop=${shop}`);
       }
+      console.log(555);
     } else {
+      console.log(666);
       await handleRequest(ctx);
     }
   });
