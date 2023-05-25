@@ -386,10 +386,20 @@ const ProductsIndex = (props) => {
             <Layout.Section>
               <Card sectioned>
                 <Card.Section>
-                  <h2 className="overlay_product_count_text">
-                    Current Overlay Product Count:{" "}
-                    {Number(shopProductOverlayCount)}
-                  </h2>
+                  <Stack distribution="equalSpacing">
+                    <h2 className="overlay_product_count_text">
+                      Current Overlay Product Count:{" "}
+                      {Number(shopProductOverlayCount)}
+                    </h2>
+                    <Button
+                      plain
+                      onClick={() =>
+                        redirect.dispatch(Redirect.Action.APP, "/import-export")
+                      }
+                    >
+                      Import / Export
+                    </Button>
+                  </Stack>
                 </Card.Section>
 
                 <Card.Section>
