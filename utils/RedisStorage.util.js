@@ -7,7 +7,7 @@ class RedisStore {
     this.client = createClient({
       url: process.env.REDIS_URL,
       socket:{
-          tls:true,
+          // tls:true,
           timeout:10000,
           keepAlive:10000,
           rejectUnauthorized:false

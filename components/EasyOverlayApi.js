@@ -1,15 +1,16 @@
-import axios from 'axios';
-
+import dotenv from "dotenv";
+dotenv.config();
+import axios from "axios";
 
 const ApiUris = {
-    'development':`${process.env.API_URL}`,
-    'production':`${process.env.API_URL}`,
+  development: `${process.env.API_URL}`,
+  production: `${process.env.API_URL}`,
 };
 const EasyOverlayApi = axios.create({
-    baseURL:ApiUris[process.env.NODE_ENV],
-    headers:{
-        'Content-Type': 'application/json'
-    }
+  baseURL: ApiUris[process.env.NODE_ENV],
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export default EasyOverlayApi;
