@@ -19,3 +19,4 @@ config/tunnel.pid
 .env
 theme-app-extension/.env
 _notes/*.sql
+envvars.txt
