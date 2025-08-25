@@ -16,3 +16,6 @@ config/tunnel.pid
 
 # next build output
 .next/
+.env
+theme-app-extension/.env
+_notes/*.sql
